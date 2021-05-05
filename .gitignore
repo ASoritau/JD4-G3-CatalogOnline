@@ -3,3 +3,10 @@
 /.idea/workspace.xml
 /.idea/
 /CatalogOnline/CatalogOnline.iml
+
+/target/
+/test-output/
+
+*.iml
+*.log
+*.log.*
