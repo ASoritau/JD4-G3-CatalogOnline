@@ -1,4 +1,4 @@
-package org.gr3.model;
+package org.gr3.CatalogOnline.model;
 
 public class Teacher extends User {
     public Teacher(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {

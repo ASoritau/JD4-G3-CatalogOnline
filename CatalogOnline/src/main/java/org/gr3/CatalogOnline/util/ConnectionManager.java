@@ -1,4 +1,4 @@
-package org.gr3.util;
+package org.gr3.CatalogOnline.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

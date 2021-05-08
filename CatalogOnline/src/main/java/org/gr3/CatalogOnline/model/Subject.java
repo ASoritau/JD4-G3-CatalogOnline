@@ -1,4 +1,4 @@
-package org.gr3.model;
+package org.gr3.CatalogOnline.model;
 
 public class Subject {
     private String name;

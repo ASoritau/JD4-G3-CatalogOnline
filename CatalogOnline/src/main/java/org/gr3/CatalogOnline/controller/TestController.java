@@ -1,4 +1,4 @@
-package org.gr3.controller;
+package org.gr3.CatalogOnline.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
