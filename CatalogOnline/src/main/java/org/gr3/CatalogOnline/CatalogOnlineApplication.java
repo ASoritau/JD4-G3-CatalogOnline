@@ -3,9 +3,6 @@ package org.gr3.CatalogOnline;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @Controller
@@ -13,10 +10,10 @@ public class CatalogOnlineApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CatalogOnlineApplication.class, args);
+//		testSite();
 	}
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String hello() {
-		return "hello";
-	}
+//	public static void testSite() {
+//		TestController controller = new TestController();
+//	}
 }
