@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (12,'Ana','Pop','Ana','somethin@yahoo.com','123456789','something, nr 43','something');
+INSERT INTO `user` VALUES (12,'Ana','Pop','Ana','somethin@yahoo.com','123456789','something, nr 43','something'),(13,'Gigi','Gigi','Gigi','somethin@yahoo.com','12345678910','something, nr 434','something');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-03 17:20:39
+-- Dump completed on 2021-05-11 11:58:34

@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `subject`
+-- Table structure for table `conection`
 --
 
-DROP TABLE IF EXISTS `subject`;
+DROP TABLE IF EXISTS `conection`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subject` (
+CREATE TABLE `conection` (
+  `UserId` int NOT NULL,
   `SubjectID` int NOT NULL,
-  `SubjectName` varchar(45) NOT NULL,
-  PRIMARY KEY (`SubjectID`)
+  PRIMARY KEY (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subject`
+-- Dumping data for table `conection`
 --
 
-LOCK TABLES `subject` WRITE;
-/*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'Matematica'),(2,'Romana'),(3,'Istorie'),(4,'Geografie'),(5,'Engleza'),(6,'Franceza'),(7,'Germana'),(8,'Educatie Fizica'),(9,'Fizica'),(10,'Chimie'),(11,'Biologie'),(12,'Religie'),(13,'Logica'),(14,'Phihologie'),(15,'Filozofie');
-/*!40000 ALTER TABLE `subject` ENABLE KEYS */;
+LOCK TABLES `conection` WRITE;
+/*!40000 ALTER TABLE `conection` DISABLE KEYS */;
+INSERT INTO `conection` VALUES (12,1),(13,2);
+/*!40000 ALTER TABLE `conection` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
