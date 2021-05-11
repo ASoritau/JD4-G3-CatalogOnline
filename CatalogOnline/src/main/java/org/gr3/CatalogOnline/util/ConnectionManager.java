@@ -14,7 +14,7 @@ public class ConnectionManager {
 
     private ConnectionManager() {
         try {
-            connection = DriverManager.getConnection("");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost;databaseName=sys");
         }
         catch (SQLException e) {
             e.printStackTrace();
