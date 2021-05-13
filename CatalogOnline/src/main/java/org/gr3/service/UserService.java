@@ -15,4 +15,6 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepo.findAllUsers();
     }
+
+//    TODO: metoda care sa verifice daca exista userul
 }

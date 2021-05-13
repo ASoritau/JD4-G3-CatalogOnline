@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentRepo extends CrudRepository<Student, Long> {
+public interface StudentRepo extends CrudRepository<Student, Integer> {
     public List<Student> findByName(String name);
     public Student findByStudentName(String studentName);
 
