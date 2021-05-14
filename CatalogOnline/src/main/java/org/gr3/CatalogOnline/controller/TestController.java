@@ -17,4 +17,8 @@ public class TestController {
         return "test";
     }
 
+//    @RequestMapping(value = "/index", method = RequestMethod.GET)
+//    public String loginProto() {
+//        return "index";
+//    }
 }

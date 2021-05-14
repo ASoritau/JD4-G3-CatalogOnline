@@ -2,6 +2,7 @@ package org.gr3.CatalogOnline.controller;
 
 import org.gr3.CatalogOnline.model.User;
 import org.gr3.service.UserService;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ public class LoginController {
             }
         }
 
-        return new RedirectView(login());
+        return new RedirectView(login((Model) new User()));
     }
 
     @GetMapping(value = "/login")
@@ -46,7 +47,7 @@ public class LoginController {
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     public String checkLoggedInUser(@ModelAttribute("user") User user, BindingResult errors, Model model) {
-
+        throw new NotYetImplementedException();
     }
 
 }
