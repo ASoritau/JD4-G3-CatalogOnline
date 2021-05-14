@@ -1,27 +1,41 @@
 package org.gr3.CatalogOnline.controller;
 
+import org.gr3.CatalogOnline.model.User;
+import org.gr3.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
-    private boolean isUserLoggedIn = false;
+
+    @Autowired
+    private UserService userService;
+
+    private List<User> loggedInUsers = new ArrayList();
+
 
     @RequestMapping("/")
-    public RedirectView redirectWithUsingRedirectView(@RequestParam(required = false, defaultValue = "false") String logged) {
-        this.isUserLoggedIn = Boolean.parseBoolean(logged);
-        if (isUserLoggedIn) {
-            return new RedirectView(userOverview());
-        } else {
-            return new RedirectView(login());
+    public RedirectView redirectWithUsingRedirectView(@RequestParam(required = false, name = "username") String username) {
+        for (User user : loggedInUsers) {
+            if (user.getUsername().equals(username)) {
+                return new RedirectView(userOverview());
+            }
         }
+
+        return new RedirectView(login());
     }
 
     @GetMapping(value = "/login")
-    public String login() {
+    public String login(Model model) {
+        User user = new User();
+        model.addAttribute("", user);
         return "login";
     }
 
@@ -29,4 +43,10 @@ public class LoginController {
     public String userOverview() {
         return "dashboard";
     }
+
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    public String checkLoggedInUser(@ModelAttribute("user") User user, BindingResult errors, Model model) {
+
+    }
+
 }

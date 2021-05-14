@@ -20,6 +20,10 @@ public class User {
         this.address = address;
     }
 
+    public User() {
+
+    }
+
     public String getUsername() {
         return username;
     }
