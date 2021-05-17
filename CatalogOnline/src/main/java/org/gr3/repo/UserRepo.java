@@ -3,18 +3,19 @@ package org.gr3.repo;
 import org.gr3.CatalogOnline.model.Student;
 import org.gr3.CatalogOnline.model.User;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface UserRepo extends CrudRepository<Student, Long> {
-    public List<Student> findByName(String name);
-    public Student findByStudentName(String studentName);
+    @Query("SELECT u FROM user u WHERE u.UserName=?1")
+    public List<Student> searchByName(String name);
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT u FROM user u WHERE u.UserName=?1 AND u.dtype = 'Student'")
+    public Student searchStudentByName(String studentName);
+
+    @Query("SELECT u FROM user u")
     public List<User> findAllUsers();
 }

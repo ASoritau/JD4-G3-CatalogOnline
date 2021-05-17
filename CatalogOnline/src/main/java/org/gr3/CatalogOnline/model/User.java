@@ -1,5 +1,11 @@
 package org.gr3.CatalogOnline.model;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="dtype",
+        discriminatorType = DiscriminatorType.STRING)
 public class User {
     private String username;
     private String password;
@@ -9,6 +15,9 @@ public class User {
     private String phoneNumber;
     private String address;
 //    private String type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long userId;
 
     public User(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
         this.username = username;

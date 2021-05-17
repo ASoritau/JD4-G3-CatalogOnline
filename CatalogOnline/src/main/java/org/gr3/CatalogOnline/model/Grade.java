@@ -1,12 +1,20 @@
 package org.gr3.CatalogOnline.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Date;
 
+@Entity
 public class Grade {
     private String subject;
     private int grade;
     private Date date;
     private String studentName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public Grade(String subject, int grade, Date date, String studentName) {
         this.subject = subject;

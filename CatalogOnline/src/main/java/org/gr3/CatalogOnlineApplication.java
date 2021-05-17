@@ -1,18 +1,17 @@
-package org.gr3.CatalogOnline;
+package org.gr3;
 
 import org.gr3.repo.UserRepo;
+import org.gr3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Controller;
 
-@ComponentScan({"org.gr3.repo"})
+@ComponentScan({"org.gr3"})
 @SpringBootApplication(scanBasePackages={"org.gr3.service","org.gr3.CatalogOnline", "org.gr3.repo"})
-@Controller
 public class CatalogOnlineApplication {
-//	@Autowired
-//	private static UserService userService;
+	@Autowired
+	private static UserService userService;
 
 	@Autowired
 	private static UserRepo userRepo;
