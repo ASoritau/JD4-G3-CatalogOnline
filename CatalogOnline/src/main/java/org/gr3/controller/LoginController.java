@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,16 +49,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/loginUser", method = RequestMethod.POST)
-    public ModelAndView loginUser(@ModelAttribute("user") User user, BindingResult errors, Model model) {
+    public String loginUser(@ModelAttribute("user") User user, BindingResult errors, Model model, RedirectAttributes redirectAttributes) {
         User loginUser = userService.login(user);
 
         if (loginUser != null) {
-            ModelAndView modelAndView = new ModelAndView("redirect:/dashboard");
-            modelAndView.addObject("user", loginUser);
-            return modelAndView;
+//            ModelAndView modelAndView = new ModelAndView("redirect:/dashboard");
+//            modelAndView.addObject("user", loginUser);
+//            return modelAndView;
+            redirectAttributes.addFlashAttribute("user", loginUser);
+//            redirectAttributes.addAttribute("user1", loginUser.getEmail());
+            return "redirect:/dashboard";
         }
         else {
-            return new ModelAndView("error");
+//            return new ModelAndView("error");
+            return "Error";
         }
     }
 
@@ -89,12 +92,12 @@ public class LoginController {
             return new ModelAndView("error");
         }
 
-        if (user.getClass().equals("org.gr3.model.Student")) {
+        if (user instanceof Student) {
             model.addAttribute("student", (Student)user);
             return new ModelAndView("redirect:/studentDashboard");
         }
 
-        if (user.getClass().equals("org.gr3.model.Teacher")) {
+        if (user instanceof Teacher) {
             model.addAttribute("teacher", (Teacher)user);
             return new ModelAndView("redirect:/teacherDashboard");
         }
