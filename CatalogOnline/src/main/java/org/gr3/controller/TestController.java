@@ -1,4 +1,4 @@
-package org.gr3.CatalogOnline.controller;
+package org.gr3.controller;
 
 import org.gr3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
