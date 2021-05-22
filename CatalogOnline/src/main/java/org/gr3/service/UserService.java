@@ -37,8 +37,7 @@ public class UserService {
             return loginUser;
         }
 
-        System.out.println("Should not get here!");
-        return null;
+        throw new IllegalArgumentException("Parameter is not of type \"User\"!");
     }
 
     public List<User> getAllUsers() {
