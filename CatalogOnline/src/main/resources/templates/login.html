@@ -1,36 +1,71 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <link th:href="@{/styles/styles.css}" rel="stylesheet"/>
-    <title>Register</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Catalog elevi</title>
+		<link href="catalog.css" rel="stylesheet">
+		<link href="reset.css" rel="stylesheet">
+	</head>
 <body>
-<a th:href="@{/}" >Home <span class="bredc-decoration"> > </span></a>
-
-<div class="login-title-wrapper">
-    <h3>
-        Login in yours catalog
-    </h3>
-</div>
-
-<form class="center register-form login-center" action="#" th:action="@{/loginUser}" th:object="${user}" method="post">
-    <table border="1" class="table">
-        <tr>
-            <td><label th:text="'Email: '"/></td>
-            <td><input type="text" th:field="*{email}"/></td>
-        </tr>
-        <tr>
-            <td><label th:text="'Password: '"/></td>
-            <td><input type="password" th:field="*{password}"/></td>
-        </tr>
-
-    </table>
-    <input type="submit" value="Submit" class="submit"/>
-</form>
-
-<a th:href="@{/register}" class="center anchor-position">
-</a>
+	<div id="continut">
+		<header>
+			<img src="imagini/log.jpg" class="ecran_mare" alt="" />
+			<img src="imagini/fundal_antet_mobil.png" class="ecran_mic" alt="" /> <!-- initial invizibil -->
+			<a href="index.html">Home</a>
+		</header>
+	<div id="continut_pag">
+	<main>
+		<h1 class="italic centrat"><span class="litera
+			italic">A</span>utentificare</h1><br />
+			<form class="center register-form login-center" name="formular" action="#" th:action="@{/loginUser}" th:object="${user}" method="post">
+			class="centrat">
+				<table class="login centrat">
+					<tr>
+<!--						<td>Nume</td>-->
+						<td><label th:text="'Email: '"/></td>
+<!--						<td><input type="text" name="numeletau" /></td>-->
+						<td><input type="text" th:field="*{email}"/></td>
+					</tr>
+					<tr>
+						<td><label th:text="'Password: '"/></td>
+						<td><input type="password" th:field="*{password}"/></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="centrat"><input type="submit"
+						name="trimite" value="Verifica" /></td>
+					</tr>
+				</table>
+			</form>
+	</main>
+<nav> 
+		<h1 class="italic">Categorii</h1>
+			<ul>
+				<li><a href="materii.html">Materii</a></li>
+				<li><a href="note.html">Note</a></li>
+				<li><a href="absente.html">Absente</a></li>
+				
+			</ul>
+		
+		
+		<h1 class="italic">Administrare</h1>
+			<ul>
+				<li><a href="login.html">Log in</a></li>
+			</ul>
+			
+		<h1 class="italic">Testimoniale</h1>
+			<ul>
+				<li><a href="testimoniale.html">Testimoniale parinti</a></li>
+			</ul>	
+			
+			
+		<h1 class="italic">Spune-ne opinia ta</h1>
+			<ul>
+				<li><a href="opinie.html">Carte de oaspeti</a></li>
+			</ul>
+	</div>
+	<footer>
+		<p>&nbsp;&nbsp; &copy; SIIT EchipaCatalog2021  </p>
+	</footer>
+	</div>
 </body>
 </html>
