@@ -7,9 +7,13 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="dtype",
         discriminatorType = DiscriminatorType.STRING)
 public class User {
-    private String userName;
+    private String username;
     private String password;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
     private String email;
     private String phoneNumber;
@@ -19,8 +23,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long userId;
 
-    public User(String userName, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
-        this.userName = userName;
+    public User(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,11 +38,11 @@ public class User {
     }
 
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.userName = username;
+        this.username = username;
     }
 
     public String getPassword() {

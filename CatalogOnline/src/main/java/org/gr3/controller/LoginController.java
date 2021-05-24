@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,7 +24,6 @@ public class LoginController {
     private UserService userService;
 
     private List<User> loggedInUsers = new ArrayList();
-
 
 //    @RequestMapping("/")
 //    public RedirectView redirectWithUsingRedirectView(@RequestParam(required = false, name = "username") String username) {
@@ -66,11 +66,24 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("/register")
+    public String registrationPage(Model model) {
+        User emptyUser = new User();
+        model.addAttribute("user", emptyUser);
 
+        return "register";
+    }
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-    public String checkLoggedInUser(@ModelAttribute("user") User user, BindingResult errors, Model model) {
-        throw new NotYetImplementedException();
+    public String saveUser(@ModelAttribute("user") @Validated User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+
+        userService.register(user);
+        System.out.println(user);
+
+        return "login";
     }
 
     @GetMapping(path = "/allUsers")
