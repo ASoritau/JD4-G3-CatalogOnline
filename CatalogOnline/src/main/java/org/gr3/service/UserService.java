@@ -20,7 +20,7 @@ public class UserService {
 //    }
 
     public User findByName(String username) {
-        return userRepo.findByUserName(username);
+        return userRepo.findByUsername(username);
     }
 
     public User login(User user) {
@@ -38,6 +38,18 @@ public class UserService {
         }
 
         throw new IllegalArgumentException("Parameter is not of type \"User\"!");
+    }
+
+    public void register(User user) {
+        User existingUser = userRepo.findByEmail(user.getEmail());
+
+        if (existingUser == null || !existingUser.getEmail().equals(user.getEmail())) {
+            userRepo.save(user);
+            LOGGER.info("User has been registered.");
+        }
+        else {
+            LOGGER.info("User was found in the database.");
+        }
     }
 
     public List<User> getAllUsers() {
