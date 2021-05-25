@@ -11,11 +11,11 @@
 		<header>
 			<img src="imagini/log.jpg" class="ecran_mare" alt="" />
 			<img src="imagini/fundal_antet_mobil.png" class="ecran_mic" alt="" /> <!-- initial invizibil -->
-			<a href="index.html">Home</a>
+			    <a href="login.html">Log in</a></li>
 		</header>
 	<div id="continut_pag">
 	<main>
-		<h1 class="italic centrat"><span class="litera italic">A</span>dd grade</h1><br />
+		<h1 class="italic centrat"><span class="litera italic">A</span>dd absence</h1><br />
 			<form name="formular" enctype="multipart/form-data" method="post"
 			action="inserare.php" class="centrat">
 			<table class="login centrat">
@@ -28,11 +28,17 @@
 			<option value="biologie">Biologie</option>
 			<option value="istorie">Istorie</option>
 			</select>
+			<select name="combo">
+			<option selected value="initial">(Choose the student)</option>
+			<option value="matematica">Georgescu Ioan</option>
+			<option value="biologie">Pop Paula</option>
+			<option value="istorie">Mioara Ana</option>
+			</select>
 			</td>
 			</tr>
 			<tr>
-			<td>Grade : </td>
-			<td><input type="grade" name="nota" /></td>
+			<td>Absence: </td>
+			<td><input type="absence" name="absenta" /></td>
 			</tr>
 			<tr>
 			<td><input type="submit" name="Submit" value="Add"></td>
@@ -43,28 +49,27 @@
 	</main>
 <nav> 
 		<h1 class="italic">Administration</h1>
-					<ul>
-						<li><a href="login.html">Log in</a></li>
-					</ul>
-					 
-					 
-				<h1 class="italic">Cathegories</h1>
-					<ul>
-						<li><a href="materii.html">Subjects</a></li>
-						<li><a href="note.html">Grades</a></li>
-						<li><a href="absente.html">Absence</a></li>
-						
-					</ul>
+			<ul>
+				<li><a href="adaugarenote.html">Add a grade</a></li>
+				<li><a href="adaugareabsente.html">Add an absence</a></li>
+			</ul>
+			 
+			 
+		<h1 class="italic">Home</h1>
+			<ul>
+				<li><a href="indexprofesor.html">Home Page</a></li>
 				
-				
-				<h1 class="italic">Opinion</h1>
-					<ul>
-						<li><a href="testimoniale.html">Parents Opinion</a></li>
-					</ul>	
+			</ul>
+		
+		
+		<h1 class="italic">Opinion</h1>
+			<ul>
+				<li><a href="testimonialeprofesor.html">Parents Opinion</a></li>
+			</ul>	
 	</nav>
 	</div>
 	<footer>
-		<p>&nbsp;&nbsp; &copy; SIIT EchipaCatalog2021  </p>
+		<p>&nbsp;&nbsp; &copy; SIIT EchipaCatalog2021 </p>
 	</footer>
 	</div>
 </body>
