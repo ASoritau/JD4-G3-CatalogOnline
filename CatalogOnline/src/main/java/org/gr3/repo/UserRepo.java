@@ -18,7 +18,7 @@ public interface UserRepo extends CrudRepository<User, Long> {
 //    @Query("SELECT u FROM user u")
 //    public List<User> findAllUsers();
 
-    public User findByUserName(String name);
+    public User findByUsername(String name);
 
     public List<User> findAll();
 
