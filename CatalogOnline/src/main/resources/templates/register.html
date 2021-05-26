@@ -1,61 +1,99 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <title>Catalog elevi</title>
+    <link href="catalog.css" rel="stylesheet">
+    <link href="reset.css" rel="stylesheet">
 </head>
-<body class="body">
-
+<body>
 <a th:href="@{/}" >Home<span class="bredc-decoration"> > </span></a>
 <a th:href="@{/login}" >Login<span class="bredc-decoration"> > </span></a>
 <span>Register</span>
+<div id="continut">
+    <header>
+        <img src="imagini/log.jpg" class="ecran_mare" alt="" />
+        <img src="imagini/fundal_antet_mobil.png" class="ecran_mic" alt="" /> <!-- initial invizibil -->
 
-<form class="center register-form" action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
-    <table border="1" class="table">
-        <tr>
-            <td><label th:text="'Username: '" /></td>
-            <td><input type="text" th:field="*{username}" required/></td>
-            <p th:each="error: ${#fields.errors('username')}"
-               th:text="${error}">Validation error</p>
-        </tr>
+        <a href="login.html">Log in</a>
+    </header>
 
-        <tr>
-            <td><label th:text="'First Name: '" /></td>
-            <td><input type="text" th:field="*{firstName}" required/></td>
-            <p th:each="error: ${#fields.errors('firstName')}"
-               th:text="${error}">Validation error</p>
-        </tr>
+    <div id="continut_pag">
+        <main>
+            <h1 class="italic"><span class="litera italic">A</span>bout us</span></h1>
+            <form class="center register-form" action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
+                <table border="1" class="table">
+                    <tr>
+                        <td><label th:text="'Username: '" /></td>
+                        <td><input type="text" th:field="*{username}" required/></td>
+                        <p th:each="error: ${#fields.errors('username')}"
+                           th:text="${error}">Validation error</p>
+                    </tr>
 
-        <tr>
-            <td><label th:text="'Last Name: '" /></td>
-            <td><input type="text" th:field="*{lastName}" required/></td>
-            <p th:each="error : ${#fields.errors('lastName')}"
-               th:text="${error}">Validation error</p>
-        </tr>
+                    <tr>
+                        <td><label th:text="'First Name: '" /></td>
+                        <td><input type="text" th:field="*{firstName}" required/></td>
+                        <p th:each="error: ${#fields.errors('firstName')}"
+                           th:text="${error}">Validation error</p>
+                    </tr>
 
-        <tr>
-            <td><label th:text="'Password: '" /></td>
-            <td><input type="password" th:field="*{password}" required/></td>
-        </tr>
+                    <tr>
+                        <td><label th:text="'Last Name: '" /></td>
+                        <td><input type="text" th:field="*{lastName}" required/></td>
+                        <p th:each="error : ${#fields.errors('lastName')}"
+                           th:text="${error}">Validation error</p>
+                    </tr>
 
-        <tr>
-            <td><label th:text="'Email: '" /></td>
-            <td><input type="email" th:field="*{email}" required/></td>
-        </tr>
+                    <tr>
+                        <td><label th:text="'Password: '" /></td>
+                        <td><input type="password" th:field="*{password}" required/></td>
+                    </tr>
 
-        <tr>
-            <td><label th:text="'Phone: '" /></td>
-            <td><input type="number" th:field="*{phoneNumber}" /></td>
-        </tr>
-<!--        <tr>-->
-<!--            <td><label th:text="'Default Currency: '" /></td>-->
-<!--            <td><input type="number" th:field="*{defaultWalletCurrencyId}" /></td>-->
-<!--        </tr>-->
+                    <tr>
+                        <td><label th:text="'Email: '" /></td>
+                        <td><input type="email" th:field="*{email}" required/></td>
+                    </tr>
 
-    </table>
-    <input type="submit" value="Submit" class="submit" />
+                    <tr>
+                        <td><label th:text="'Phone: '" /></td>
+                        <td><input type="number" th:field="*{phoneNumber}" /></td>
+                    </tr>
 
-</form>
+                    <tr>
+                        <select th:field="*{dtype}">
+                            <option th:value="'M'" th:text="Male"></option>
+                            <option th:value="'F'" th:text="Female"></option>
+                        </select>
+                    </tr>
+                </table>
+                <input type="submit" value="Submit" class="submit" />
+            </form>
+        </main>
+        <nav>
+            <h1 class="italic">Home</h1>
+            <ul>
+                <li><a href="indexelev.html">Home Page</a></li>
+
+            </ul>
+
+
+            <h1 class="italic">Cathegories</h1>
+            <ul>
+                <li><a href="materii.html">Subjects</a></li>
+                <li><a href="note.html">Grades</a></li>
+                <li><a href="absente.html">Absence</a></li>
+            </ul>
+
+
+            <h1 class="italic">Opinion</h1>
+            <ul>
+                <li><a href="testimonialeelev.html">Parents Opinion</a></li>
+            </ul>
+        </nav>
+    </div>
+    <footer>
+        <p>&nbsp;&nbsp; &copy; SIIT EchipaCatalog2021 </p>
+    </footer>
+</div>
 </body>
 </html>
