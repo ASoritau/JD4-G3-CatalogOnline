@@ -60,10 +60,13 @@
                     </tr>
 
                     <tr>
-                        <select th:field="*{dtype}">
-                            <option th:value="'M'" th:text="Male"></option>
-                            <option th:value="'F'" th:text="Female"></option>
-                        </select>
+                        <td><label th:text="'User Type: '"/></td>
+                        <td>
+                            <select th:field="*{dtype}">
+                            <option th:value="'Student'" th:text="Student"></option>
+                            <option th:value="'Teacher'" th:text="Teacher"></option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
                 <input type="submit" value="Submit" class="submit" />
