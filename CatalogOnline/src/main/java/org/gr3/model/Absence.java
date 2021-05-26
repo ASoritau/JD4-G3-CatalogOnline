@@ -6,30 +6,53 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class Absence {
     private Date date;
-    private String subject;
-    private String username;
+    private Integer subjectId;
+    private Integer userId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Absence(Date date, String subject, String username) {
+    public Absence(){}
+
+    public Absence(Date date, Integer subjectId, Integer userId) {
         this.date = date;
-        this.subject = subject;
-        this.username = username;
+        this.subjectId = subjectId;
+        this.userId = userId;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public String getSubject() {
-        return subject;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public String getStudentName() {
-        return username;
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
