@@ -7,6 +7,9 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="dtype",
         discriminatorType = DiscriminatorType.STRING)
 public class User {
+    @Column(name="subtype_id", insertable = false, updatable = false)
+    protected String dtype;
+
     private String username;
     private String password;
 
@@ -31,6 +34,14 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+
+    public String getDtype() {
+        return dtype;
+    }
+
+    public void setDtype(String dtype) {
+        this.dtype = dtype;
     }
 
     public User() {

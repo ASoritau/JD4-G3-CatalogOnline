@@ -4,7 +4,6 @@ import org.gr3.model.Student;
 import org.gr3.model.Teacher;
 import org.gr3.model.User;
 import org.gr3.service.UserService;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +61,7 @@ public class LoginController {
         }
         else {
 //            return new ModelAndView("error");
-            return "Error";
+            return "error";
         }
     }
 
