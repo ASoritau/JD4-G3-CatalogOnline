@@ -5,7 +5,7 @@
 	  xmlns:th="http://www.thymeleaf.org" lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Catalog elevi</title>
+		<title>Catalog elevi - Adauga Materie</title>
 		<link href="catalog.css" rel="stylesheet">
 		<link href="reset.css" rel="stylesheet">
 	</head>
@@ -18,35 +18,19 @@
 		</header>
 	<div id="continut_pag">
 	<main>
-		<h1 class="italic centrat"><span class="litera italic">A</span>dd absence</h1><br />
+		<h1 class="italic centrat"><span class="litera italic">A</span>dd subject</h1><br />
 			<form name="formular" enctype="multipart/form-data" method="post"
-				  action="#" th:action="@{/createAbsence}" th:object="${absenta}" class="centrat">
+				  action="#" th:action="@{/createSubject}" th:object="${subject}" class="centrat">
 			<table class="login centrat">
-			<tr>
-			<td>Subject :</td>
-			<td>
-				<select name="subjectId" th:field="*{subjectId}" required="required">
-					<option value="">(Choose the subject)</option>
-					<option th:each="subject : ${subjects}" th:value="${subject.key}" th:text="${subject.value}"></option>
-				</select>
-			</td>
-			</tr><tr>
-				<td>Student :</td>
-			<td>
-				<select name="userId" th:field="*{userId}" required="required">
-					<option value="">(Choose the student)</option>
-					<option th:each="student : ${students}" th:value="${student.key}" th:text="${student.value}"></option>
-				</select>
-			</td>
-			</tr>
-			<tr>
-			<td>Absence: </td>
-			<td><input type="date" name="date" required="required"/></td>
-			</tr>
-			<tr>
-			<td><input type="reset" name="Reset" value="Cancel"></td>
-			<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
+				<tr>
+					<td><label th:text="'Subject name: '" /></td>
+					<td><input type="text" th:field="*{name}" required="required"/></td>
+					<p th:each="error: ${#fields.errors('name')}"
+					   th:text="${error}">Validation error</p>
+				</tr>
+					<td><input type="reset" name="Reset" value="Cancel"></td>
+					<td><input type="submit" name="Submit" value="Add"></td>
+				</tr>
 			</table>
 			</form>
 	</main>
@@ -57,13 +41,10 @@
 				<li><a href="adaugareabsente.html">Add an absence</a></li>
 			</ul>
 			 
-			 
 		<h1 class="italic">Home</h1>
 			<ul>
 				<li><a href="indexprofesor.html">Home Page</a></li>
-				
 			</ul>
-		
 		
 		<h1 class="italic">Opinion</h1>
 			<ul>

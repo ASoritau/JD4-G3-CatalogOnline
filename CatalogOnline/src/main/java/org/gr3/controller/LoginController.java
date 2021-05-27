@@ -24,17 +24,6 @@ public class LoginController {
 
     private List<User> loggedInUsers = new ArrayList();
 
-//    @RequestMapping("/")
-//    public RedirectView redirectWithUsingRedirectView(@RequestParam(required = false, name = "username") String username) {
-//        for (User user : loggedInUsers) {
-//            if (user.getUsername().equals(username)) {
-//                return new RedirectView(userOverview());
-//            }
-//        }
-//
-//        return new RedirectView(login((Model) new Student()));
-//    }
-
     @RequestMapping("/")
     public String redirectWithUsingRedirectView(Model model) {
         return login(model);
@@ -52,15 +41,10 @@ public class LoginController {
         User loginUser = userService.login(user);
 
         if (loginUser != null) {
-//            ModelAndView modelAndView = new ModelAndView("redirect:/dashboard");
-//            modelAndView.addObject("user", loginUser);
-//            return modelAndView;
             redirectAttributes.addFlashAttribute("user", loginUser);
-//            redirectAttributes.addAttribute("user1", loginUser.getEmail());
             return "redirect:/dashboard";
         }
         else {
-//            return new ModelAndView("error");
             return "error";
         }
     }
