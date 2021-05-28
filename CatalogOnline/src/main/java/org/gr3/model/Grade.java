@@ -6,36 +6,64 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class Grade {
     private String subject;
     private int grade;
     private Date date;
-    private String username;
+    private int student_id;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Grade(String subject, int grade, Date date, String username) {
+    public Grade() {
+
+    }
+
+    public Grade(String subject, int grade, Date date, int student_id) {
         this.subject = subject;
         this.grade = grade;
         this.date = date;
-        this.username = username;
+        this.student_id = student_id;
     }
 
     public String getSubject() {
         return subject;
     }
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     public int getGrade() {
         return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public String getStudentName() {
-        return username;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(int student_id) {
+        this.student_id = student_id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
