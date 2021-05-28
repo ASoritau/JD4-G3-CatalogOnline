@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.stream.Collectors;
 
@@ -44,7 +43,6 @@ public class AbsenceController {
         model.addAttribute("absenta", new Absence());
         return "adaugareabsente";
     }
-
 
     private void populateForm(Model model) {
         model.addAttribute("students", userService.getAllUsers().stream().filter(k -> (k instanceof Student))
