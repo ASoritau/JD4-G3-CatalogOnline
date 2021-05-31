@@ -9,6 +9,8 @@ import javax.persistence.Id;
 public class Subject {
     private String name;
 
+    private Long teacherId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,5 +35,13 @@ public class Subject {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
     }
 }
