@@ -12,6 +12,8 @@ public class Grade {
     private int grade;
     private Date date;
     private int student_id;
+    private String student_name;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,12 +37,12 @@ public class Grade {
         this.subject = subject;
     }
 
-    public int getGrade() {
-        return grade;
+    public Long getId() {
+        return id;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDate() {
@@ -51,6 +53,14 @@ public class Grade {
         this.date = date;
     }
 
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
     public int getStudent_id() {
         return student_id;
     }
@@ -59,11 +69,11 @@ public class Grade {
         this.student_id = student_id;
     }
 
-    public Long getId() {
-        return id;
+    public String getStudent_name() {
+        return student_name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
     }
 }

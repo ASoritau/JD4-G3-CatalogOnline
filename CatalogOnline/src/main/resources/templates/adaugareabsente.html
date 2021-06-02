@@ -20,27 +20,31 @@
 	<main>
 		<h1 class="italic centrat"><span class="litera italic">A</span>dd absence</h1><br />
 			<form name="formular" enctype="multipart/form-data" method="post"
-				  action="#" th:action="@{/createAbsence}" th:object="${absenta}" class="centrat">
+				  action="#" th:action="@{/createAbsence}" th:object="${absence}" class="centrat">
 			<table class="login centrat">
 			<tr>
-			<td>Subject :</td>
+			<td>Subject:</td>
 			<td>
-				<select name="subjectId" th:field="*{subjectId}" required="required">
+<!--				<select name="subject_id" th:field="*{subject_id}" required="required">-->
+<!--					<option value="">(Choose the subject)</option>-->
+<!--					<option th:each="subject : ${subjects}" th:value="${subject.key}" th:text="${subject.value}"></option>-->
+<!--				</select>-->
+				<select name="subject_name" th:field="*{subject_name}" required="required">
 					<option value="">(Choose the subject)</option>
 					<option th:each="subject : ${subjects}" th:value="${subject.key}" th:text="${subject.value}"></option>
 				</select>
 			</td>
 			</tr><tr>
-				<td>Student :</td>
+				<td>Student:</td>
 			<td>
-				<select name="userId" th:field="*{userId}" required="required">
+				<select name="user_id" th:field="*{user_id}" required="required">
 					<option value="">(Choose the student)</option>
 					<option th:each="student : ${students}" th:value="${student.key}" th:text="${student.value}"></option>
 				</select>
 			</td>
 			</tr>
 			<tr>
-			<td>Absence: </td>
+			<td>Absence:</td>
 			<td><input type="date" name="date" required="required"/></td>
 			</tr>
 			<tr>

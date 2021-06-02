@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -39,6 +40,8 @@ public class GradesController {
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
+        Optional<User> user = userService.findById(17);
+        user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         gradeService.crateGrade(grade);
 
         //reset form
@@ -50,6 +53,12 @@ public class GradesController {
     public String getGrades(/*@ModelAttribute("grades")*/ Model model) {
         populateForm(model);
         List<Grade> grades = gradeService.getAllGrades(17);
+
+        for (Grade grade : grades) {
+            Optional<User> user = userService.findById(17);
+            user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+        }
+
         model.addAttribute("grades", grades);
         return "note";
     }

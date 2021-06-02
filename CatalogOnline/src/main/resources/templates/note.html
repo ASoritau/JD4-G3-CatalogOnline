@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Catalog elevi</title>
@@ -27,12 +26,13 @@
                     <th>Date</th>
                     <th>Grade</th>
                     <th>Subject Name</th>
+                    <th>Student Name</th>
                 </tr>
                 <tr th:each="grade: ${grades}">
                     <td th:text="${grade.date}"/>
                     <td th:text="${grade.grade}"/>
                     <td th:text="${grade.subject}"/>
-                    <td th:text="${grade.student_id}"/>
+                    <td th:text="${grade.student_name}"/>
                 </tr>
 <!--                <tr>-->
 <!--                    <td th:text="${date}"/>-->

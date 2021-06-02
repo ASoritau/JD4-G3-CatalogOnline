@@ -83,7 +83,6 @@ public class LoginController {
 
     @RequestMapping(value = "/dashboard")
     public ModelAndView myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
-//        de cautat tutorial thymeleaf: cum se trimit corect parametrii (ajunge model, nu ajunge cheia?)
         if (user == null) {
             return new ModelAndView("error");
         }
