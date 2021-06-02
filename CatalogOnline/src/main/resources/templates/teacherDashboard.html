@@ -3,9 +3,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Teacher Dashboard</title>
+    <meta charset="UTF-8">
+    <title>Catalog elevi</title>
+    <link href="catalog.css" rel="stylesheet">
+    <link href="reset.css" rel="stylesheet">
 </head>
 <body>
-    <textarea>The teacher is already logged in"</textarea>
+<!--    <textarea>The teacher is already logged in"</textarea>-->
+<nav>
+    <h1 class="italic">Administration</h1>
+    <ul>
+        <li><a th:href="@{adaugarenote}">Add a grade</a></li>
+        <li><a th:href="@{absenceForm}">Add an absence</a></li>
+    </ul>
+
+
+    <h1 class="italic">Home</h1>
+    <ul>
+        <li><a th:href="indexprofesor.html">Home Page</a></li>
+    </ul>
+
+
+    <h1 class="italic">Opinion</h1>
+    <ul>
+        <li><a th:href="testimonialeprofesor.html">Parents Opinion</a></li>
+    </ul>
+</nav>
 </body>
 </html>

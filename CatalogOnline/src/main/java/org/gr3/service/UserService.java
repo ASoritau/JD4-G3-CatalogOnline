@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,19 +18,19 @@ public class UserService {
     private UserRepo userRepo;
 
     private Logger LOGGER = LoggerFactory.getLogger(UserService.class);
-//    public List<User> getAllUsers() {
-//        return userRepo.findAllUsers();
-//    }
 
-    public User findByName(String username) {
-        return userRepo.findByUsername(username);
+    public Optional<User> findById(long userId) {
+        return userRepo.findById(userId);
     }
+
+//    public User findByName(String username) {
+//        return userRepo.findByUsername(username);
+//    }
 
     public User login(User user) {
         User loginUser = userRepo.findByEmail(user.getEmail());
 
         if (loginUser == null) {
-//            System.out.println("User not found!");
             LOGGER.error("User was not found!");
             return null;
         }
@@ -50,18 +51,18 @@ public class UserService {
             Student s;
 
             if (user.getDtype().equals("Student")) {
-                s = new Student(user.getUsername(), user.getPassword(), user.getFirstName(),
+                s = new Student(user.getPassword(), user.getFirstName(),
                         user.getLastName(), user.getEmail(), user.getPhoneNumber(), user.getAddress());
                 s.setDtype("Student");
                 userRepo.save(s);
-                LOGGER.info("User \"" + s.getUsername() + "\" has been registered as Student.");
+                LOGGER.info("User \"" + s.getFirstName() + " " + s.getLastName() + "\" has been registered as Student.");
             }
             if (user.getDtype().equals("Teacher")) {
-                t = new Teacher(user.getUsername(), user.getPassword(), user.getFirstName(),
+                t = new Teacher(user.getPassword(), user.getFirstName(),
                         user.getLastName(), user.getEmail(), user.getPhoneNumber(), user.getAddress());
                 t.setDtype("Teacher");
                 userRepo.save(t);
-                LOGGER.info("User \"" + t.getUsername() + "\" has been registered as Teacher.");
+                LOGGER.info("User \"" + t.getFirstName() + " " + t.getLastName() + "\" has been registered as Teacher.");
             }
 
         }

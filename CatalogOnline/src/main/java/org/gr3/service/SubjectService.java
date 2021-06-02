@@ -1,6 +1,7 @@
 package org.gr3.service;
 
 import org.gr3.model.Subject;
+import org.gr3.model.User;
 import org.gr3.repo.SubjectRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,10 @@ public class SubjectService {
 
     public List<Subject> getAllSubjects() {
         return subjectRepo.findAll();
+    }
+
+    public Subject findById(int id) {
+        return subjectRepo.findById(id);
     }
 
     public void createSubject(Subject subject) {

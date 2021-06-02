@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface AbsenceRepo extends CrudRepository<Absence, Long> {
 
-    List<Absence> findByUserId(Integer studentId);
+    List<Absence> findAll();
+
+//    List<Absence> findByUserId(Integer studentId);
 
 }

@@ -22,7 +22,11 @@ public class AbsenceService {
         LOGGER.debug("Absence added successfully.");
     }
 
-    public List<Absence> getAbsencesForStudent(Integer studentId){
-        return absenceRepo.findByUserId(studentId);
+    public List<Absence> getAllAbsences() {
+        return absenceRepo.findAll();
     }
+
+//    public List<Absence> getAbsencesForStudent(Integer studentId){
+//        return absenceRepo.findByUserId(studentId);
+//    }
 }

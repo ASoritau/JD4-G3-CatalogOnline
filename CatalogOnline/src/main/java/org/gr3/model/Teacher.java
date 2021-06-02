@@ -14,8 +14,8 @@ public class Teacher extends User {
 
     }
 
-    public Teacher(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
-        super(username, password, firstName, lastName, email, phoneNumber, address);
+    public Teacher(String password, String firstName, String lastName, String email, String phoneNumber, String address) {
+        super(password, firstName, lastName, email, phoneNumber, address);
     }
 
     public void setNumarContract(String numarContract) {

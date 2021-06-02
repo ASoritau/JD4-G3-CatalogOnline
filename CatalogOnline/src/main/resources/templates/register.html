@@ -23,12 +23,12 @@
             <h1 class="italic"><span class="litera italic">A</span>dd new user</span></h1>
             <form class="center register-form" action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
                 <table border="1" class="table">
-                    <tr>
-                        <td><label th:text="'Username: '" /></td>
-                        <td><input type="text" th:field="*{username}" required/></td>
-                        <p th:each="error: ${#fields.errors('username')}"
-                           th:text="${error}">Validation error</p>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td><label th:text="'Username: '" /></td>-->
+<!--                        <td><input type="text" th:field="*{username}" required/></td>-->
+<!--                        <p th:each="error: ${#fields.errors('username')}"-->
+<!--                           th:text="${error}">Validation error</p>-->
+<!--                    </tr>-->
 
                     <tr>
                         <td><label th:text="'First Name: '" /></td>
@@ -57,6 +57,11 @@
                     <tr>
                         <td><label th:text="'Phone: '" /></td>
                         <td><input type="number" th:field="*{phoneNumber}" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label th:text="'Address: '" /></td>
+                        <td><input type="text" th:field="*{address}" /></td>
                     </tr>
 
                     <tr>

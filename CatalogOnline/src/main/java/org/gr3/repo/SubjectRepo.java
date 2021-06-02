@@ -11,4 +11,5 @@ public interface SubjectRepo extends CrudRepository<Subject, Long> {
 
     List<Subject> findAll();
 
+    Subject findById(int id);
 }

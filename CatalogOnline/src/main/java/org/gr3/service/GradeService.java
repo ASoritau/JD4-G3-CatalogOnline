@@ -1,10 +1,12 @@
 package org.gr3.service;
 
 import org.gr3.model.Grade;
+import org.gr3.model.User;
 import org.gr3.repo.GradeRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
