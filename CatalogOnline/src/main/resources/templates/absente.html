@@ -24,14 +24,12 @@
 
                 <tr>
                     <th>Date</th>
-                    <th>Subject</th>
-<!--                    <th>User Id</th>-->
                     <th>Subject Name</th>
                     <th>Student Name</th>
                 </tr>
                 <tr th:each="absence: ${absences}">
                     <td th:text="${absence.date}"/>
-                    <td th:text="${absence.subject_id}"/>
+<!--                    <td th:text="${absence.subject_id}"/>-->
 <!--                    <td th:text="${absence.user_id}"/>-->
                     <td th:text="${absence.subject_name}"/>
                     <td th:text="${absence.student_name}"/>

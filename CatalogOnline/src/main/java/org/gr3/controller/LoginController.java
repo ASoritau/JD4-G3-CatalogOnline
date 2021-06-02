@@ -43,8 +43,7 @@ public class LoginController {
         if (loginUser != null) {
             redirectAttributes.addFlashAttribute("user", loginUser);
             return "redirect:/dashboard";
-        }
-        else {
+        } else {
             return "error";
         }
     }
@@ -75,11 +74,11 @@ public class LoginController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(path = "/username")
-    public @ResponseBody
-    User getUser() {
-        return userService.findByName("Ana");
-    }
+//    @GetMapping(path = "/username")
+//    public @ResponseBody
+//    User getUser() {
+//        return userService.findByName("Ana");
+//    }
 
     @RequestMapping(value = "/dashboard")
     public ModelAndView myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
@@ -88,12 +87,12 @@ public class LoginController {
         }
 
         if (user instanceof Student) {
-            model.addAttribute("student", (Student)user);
+            model.addAttribute("student", (Student) user);
             return new ModelAndView("redirect:/studentDashboard");
         }
 
         if (user instanceof Teacher) {
-            model.addAttribute("teacher", (Teacher)user);
+            model.addAttribute("teacher", (Teacher) user);
             return new ModelAndView("redirect:/teacherDashboard");
         }
 

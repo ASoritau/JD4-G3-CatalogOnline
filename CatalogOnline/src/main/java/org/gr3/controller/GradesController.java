@@ -40,7 +40,7 @@ public class GradesController {
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
-        Optional<User> user = userService.findById(17);
+        Optional<User> user = userService.findById(71);
         user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         gradeService.crateGrade(grade);
 

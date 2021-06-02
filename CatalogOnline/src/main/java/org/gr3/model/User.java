@@ -4,13 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="dtype",
+@DiscriminatorColumn(name = "dtype",
         discriminatorType = DiscriminatorType.STRING)
 public class User {
-    @Column(name="subtype_id", insertable = false, updatable = false)
+    @Column(name = "subtype_id", insertable = false, updatable = false)
     protected String dtype;
 
-    private String username;
     private String password;
 
     @Column(name = "first_name")
@@ -21,13 +20,12 @@ public class User {
     private String email;
     private String phoneNumber;
     private String address;
-//    private String type;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long userId;
 
-    public User(String username, String password, String firstName, String lastName, String email, String phoneNumber, String address) {
-        this.username = username;
+    public User(String password, String firstName, String lastName, String email, String phoneNumber, String address) {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,14 +44,6 @@ public class User {
 
     public User() {
 
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
