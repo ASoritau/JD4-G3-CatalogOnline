@@ -14,11 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@SessionAttributes("student")
 @Controller
 public class AbsenceController {
 
@@ -38,11 +40,13 @@ public class AbsenceController {
 
     @RequestMapping(value = "/getAbsences", method = RequestMethod.GET)
     public String getAbsences(Model model) {
+        Student student = (Student) model.getAttribute("student");
+
         populateForm(model);
-        List<Absence> absences = absenceService.getAllAbsences();
+        List<Absence> absences = absenceService.getStudentAbsences((int) student.getUserId());
 
         for (Absence absence : absences) {
-            Optional<User> user = userService.findById(17);
+            Optional<User> user = userService.findById(student.getUserId());
             user.ifPresent(value -> absence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         }
 
@@ -53,7 +57,7 @@ public class AbsenceController {
     @RequestMapping(value = "/createAbsence", method = RequestMethod.POST)
     public String createAbsence(@ModelAttribute("absence") Absence absence, BindingResult errors, Model model) {
         populateForm(model);
-        Optional<User> user = userService.findById(17);
+        Optional<User> user = userService.findById(73);
         user.ifPresent(value -> absence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         absenceService.createAbsence(absence);
 
