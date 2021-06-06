@@ -81,18 +81,23 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/dashboard")
-    public ModelAndView myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
+    public String myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         if (user == null) {
-            return new ModelAndView("error");
+//            return new ModelAndView("error");
         }
 
         if (user instanceof Student) {
-            ModelAndView model1 = new ModelAndView("redirect:/studentDashboard");
-            model1.addObject("firstName", user.getFirstName());
-            model1.addObject("lastName", user.getLastName());
-            model1.addObject("userId", user.getUserId());
+            // working
+//            ModelAndView model1 = new ModelAndView("redirect:/studentDashboard");
+//            model1.addObject("firstName", user.getFirstName());
+//            model1.addObject("lastName", user.getLastName());
+//            model1.addObject("userId", user.getUserId());
+//
+//            return model1;
+            // working
 
-            return model1;
+            redirectAttributes.addFlashAttribute("student", user);
+            return "redirect:/studentDashboard";
 
 //            model.addAttribute("student", (Student) user);
 //            return new ModelAndView("redirect:/studentDashboard");
@@ -104,13 +109,14 @@ public class LoginController {
             model1.addObject("lastName", user.getLastName());
             model1.addObject("userId", user.getUserId());
 
-            return model1;
+//            return model1;
 
 //            model.addAttribute("teacher", (Teacher) user);
 //            return new ModelAndView("redirect:/teacherDashboard");
         }
 
-        return new ModelAndView("error");
+//        return new ModelAndView("error");
+        return "error";
     }
 
 }

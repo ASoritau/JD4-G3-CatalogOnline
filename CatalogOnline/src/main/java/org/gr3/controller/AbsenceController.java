@@ -47,7 +47,7 @@ public class AbsenceController {
         }
 
         model.addAttribute("absences", absences);
-         return "absente";
+        return "absente";
     }
 
     @RequestMapping(value = "/createAbsence", method = RequestMethod.POST)
