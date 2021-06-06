@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,8 @@ public class GradesController {
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
-        Optional<User> user = userService.findById(71);
+//        Optional<User> user = userService.findById(71);
+        Optional<User> user = userService.findById(grade.getStudentId());
         user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         gradeService.crateGrade(grade);
 
@@ -50,12 +52,21 @@ public class GradesController {
     }
 
     @RequestMapping(value = "/getGrades", method = RequestMethod.GET)
-    public String getGrades(/*@ModelAttribute("grades")*/ Model model) {
+    public String getGrades(@ModelAttribute("student") Student student, Model model) {
+        student = (Student) userService.findByFirstName("Alin");
+
+        model.addAttribute("student", student);
+        int userId = (int) student.getUserId();
+        ModelAndView model1 = new ModelAndView("redirect:/note");
+        model1.addObject("userId", student.getUserId());
+
         populateForm(model);
-        List<Grade> grades = gradeService.getAllGrades(17);
+//        List<Grade> grades = gradeService.getAllGrades(17);
+        List<Grade> grades = gradeService.getStudentGrades((int) student.getUserId());
 
         for (Grade grade : grades) {
-            Optional<User> user = userService.findById(17);
+//            Optional<User> user = userService.findById(17);
+            Optional<User> user = userService.findById(student.getUserId());
             user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         }
 

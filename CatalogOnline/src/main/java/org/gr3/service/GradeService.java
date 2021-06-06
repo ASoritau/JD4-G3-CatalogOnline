@@ -34,7 +34,11 @@ public class GradeService {
         LOGGER.debug("Grade added successfully.");
     }
 
-    public List<Grade> getAllGrades(Integer studentId){
+    public List<Grade> getAllGrades() {
         return gradeRepo.findAll();
+    }
+
+    public List<Grade> getStudentGrades(int studentId) {
+        return gradeRepo.findByStudentId(studentId);
     }
 }

@@ -32,7 +32,7 @@
 					<tr>
 						<td>Student :</td>
 						<td>
-							<select name="student_id" th:field="*{student_id}" required="required">
+							<select name="studentId" th:field="*{studentId}" required="required">
 								<option value="1">(Choose the student)</option>
 								<option th:each="student : ${students}" th:value="${student.key}" th:text="${student.value}"></option>
 							</select>

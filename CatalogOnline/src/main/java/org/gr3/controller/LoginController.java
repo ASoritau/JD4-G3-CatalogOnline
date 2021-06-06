@@ -74,11 +74,11 @@ public class LoginController {
         return userService.getAllUsers();
     }
 
-//    @GetMapping(path = "/username")
-//    public @ResponseBody
-//    User getUser() {
-//        return userService.findByName("Ana");
-//    }
+    @GetMapping(path = "/username")
+    public @ResponseBody
+    User getUser(String name) {
+        return userService.findByFirstName(name);
+    }
 
     @RequestMapping(value = "/dashboard")
     public ModelAndView myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
@@ -87,13 +87,27 @@ public class LoginController {
         }
 
         if (user instanceof Student) {
-            model.addAttribute("student", (Student) user);
-            return new ModelAndView("redirect:/studentDashboard");
+            ModelAndView model1 = new ModelAndView("redirect:/studentDashboard");
+            model1.addObject("firstName", user.getFirstName());
+            model1.addObject("lastName", user.getLastName());
+            model1.addObject("userId", user.getUserId());
+
+            return model1;
+
+//            model.addAttribute("student", (Student) user);
+//            return new ModelAndView("redirect:/studentDashboard");
         }
 
         if (user instanceof Teacher) {
-            model.addAttribute("teacher", (Teacher) user);
-            return new ModelAndView("redirect:/teacherDashboard");
+            ModelAndView model1 = new ModelAndView("redirect:/teacherDashboard");
+            model1.addObject("firstName", user.getFirstName());
+            model1.addObject("lastName", user.getLastName());
+            model1.addObject("userId", user.getUserId());
+
+            return model1;
+
+//            model.addAttribute("teacher", (Teacher) user);
+//            return new ModelAndView("redirect:/teacherDashboard");
         }
 
         return new ModelAndView("error");

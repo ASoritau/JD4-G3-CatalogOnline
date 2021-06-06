@@ -9,7 +9,11 @@
     <link href="reset.css" rel="stylesheet">
 </head>
 <body>
-<!--    <textarea>The teacher is already logged in"</textarea>-->
+<textarea>Welcome, teacher </textarea>
+<textarea th:text="${teacher.firstName}"></textarea>
+<textarea th:text="${teacher.lastName}"></textarea>
+<textarea th:text="${teacher.userId}"></textarea>
+
 <nav>
     <h1 class="italic">Administration</h1>
     <ul>

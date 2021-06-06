@@ -23,9 +23,9 @@ public class UserService {
         return userRepo.findById(userId);
     }
 
-//    public User findByName(String username) {
-//        return userRepo.findByUsername(username);
-//    }
+    public User findByFirstName(String firstName) {
+        return userRepo.findByFirstName(firstName);
+    }
 
     public User login(User user) {
         User loginUser = userRepo.findByEmail(user.getEmail());
