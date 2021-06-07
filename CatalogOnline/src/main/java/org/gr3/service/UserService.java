@@ -65,8 +65,7 @@ public class UserService {
                 LOGGER.info("User \"" + t.getFirstName() + " " + t.getLastName() + "\" has been registered as Teacher.");
             }
 
-        }
-        else {
+        } else {
             LOGGER.info("User was found in the database.");
         }
     }

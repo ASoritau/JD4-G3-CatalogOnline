@@ -83,39 +83,19 @@ public class LoginController {
     @RequestMapping(value = "/dashboard")
     public String myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         if (user == null) {
-//            return new ModelAndView("error");
+            return "error";
         }
 
         if (user instanceof Student) {
-            // working
-//            ModelAndView model1 = new ModelAndView("redirect:/studentDashboard");
-//            model1.addObject("firstName", user.getFirstName());
-//            model1.addObject("lastName", user.getLastName());
-//            model1.addObject("userId", user.getUserId());
-//
-//            return model1;
-            // working
-
             redirectAttributes.addFlashAttribute("student", user);
             return "redirect:/studentDashboard";
-
-//            model.addAttribute("student", (Student) user);
-//            return new ModelAndView("redirect:/studentDashboard");
         }
 
         if (user instanceof Teacher) {
-            ModelAndView model1 = new ModelAndView("redirect:/teacherDashboard");
-            model1.addObject("firstName", user.getFirstName());
-            model1.addObject("lastName", user.getLastName());
-            model1.addObject("userId", user.getUserId());
-
-//            return model1;
-
-//            model.addAttribute("teacher", (Teacher) user);
-//            return new ModelAndView("redirect:/teacherDashboard");
+            redirectAttributes.addFlashAttribute("teacher", user);
+            return "redirect:/teacherDashboard";
         }
 
-//        return new ModelAndView("error");
         return "error";
     }
 

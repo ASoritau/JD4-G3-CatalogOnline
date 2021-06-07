@@ -11,7 +11,6 @@ public class Grade {
     private String subject;
     private int grade;
     private Date date;
-//    private int student_id;
     private int studentId;
     private String student_name;
 
@@ -27,7 +26,6 @@ public class Grade {
         this.subject = subject;
         this.grade = grade;
         this.date = date;
-//        this.student_id = student_id;
         this.studentId = studentId;
     }
 
@@ -62,14 +60,6 @@ public class Grade {
     public void setGrade(int grade) {
         this.grade = grade;
     }
-
-//    public int getStudent_id() {
-//        return student_id;
-//    }
-//
-//    public void setStudent_id(int student_id) {
-//        this.student_id = student_id;
-//    }
 
     public int getStudentId() {
         return studentId;

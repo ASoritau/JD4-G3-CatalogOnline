@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @SessionAttributes("student")
 @Controller
 public class StudentDashboardController {
-    @RequestMapping(value = "/studentDashboard"/*, method = RequestMethod.GET*/)
+    @RequestMapping(value = "/studentDashboard")
     public String myDashboardPage(@ModelAttribute("student") Student student, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         model.addAttribute("student", student);
         student = (Student) model.getAttribute("student");
