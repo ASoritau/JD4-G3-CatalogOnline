@@ -74,29 +74,29 @@ public class LoginController {
         return userService.getAllUsers();
     }
 
-//    @GetMapping(path = "/username")
-//    public @ResponseBody
-//    User getUser() {
-//        return userService.findByName("Ana");
-//    }
+    @GetMapping(path = "/username")
+    public @ResponseBody
+    User getUser(String name) {
+        return userService.findByFirstName(name);
+    }
 
     @RequestMapping(value = "/dashboard")
-    public ModelAndView myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
+    public String myDashboardPage(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         if (user == null) {
-            return new ModelAndView("error");
+            return "error";
         }
 
         if (user instanceof Student) {
-            model.addAttribute("student", (Student) user);
-            return new ModelAndView("redirect:/studentDashboard");
+            redirectAttributes.addFlashAttribute("student", user);
+            return "redirect:/studentDashboard";
         }
 
         if (user instanceof Teacher) {
-            model.addAttribute("teacher", (Teacher) user);
-            return new ModelAndView("redirect:/teacherDashboard");
+            redirectAttributes.addFlashAttribute("teacher", user);
+            return "redirect:/teacherDashboard";
         }
 
-        return new ModelAndView("error");
+        return "error";
     }
 
 }

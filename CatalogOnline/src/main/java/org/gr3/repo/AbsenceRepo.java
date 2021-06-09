@@ -11,6 +11,6 @@ public interface AbsenceRepo extends CrudRepository<Absence, Long> {
 
     List<Absence> findAll();
 
-//    List<Absence> findByUserId(Integer studentId);
+    List<Absence> findByStudentId(int studentId);
 
 }

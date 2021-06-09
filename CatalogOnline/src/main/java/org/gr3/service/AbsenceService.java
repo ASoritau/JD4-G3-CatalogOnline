@@ -26,7 +26,7 @@ public class AbsenceService {
         return absenceRepo.findAll();
     }
 
-//    public List<Absence> getAbsencesForStudent(Integer studentId){
-//        return absenceRepo.findByUserId(studentId);
-//    }
+    public List<Absence> getStudentAbsences(int studentId){
+        return absenceRepo.findByStudentId(studentId);
+    }
 }

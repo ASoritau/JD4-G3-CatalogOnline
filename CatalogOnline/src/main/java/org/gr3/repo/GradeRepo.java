@@ -10,4 +10,6 @@ import java.util.List;
 public interface GradeRepo extends CrudRepository<Grade, Long> {
 
     List<Grade> findAll();
+
+    List<Grade> findByStudentId(int studentId);
 }

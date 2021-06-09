@@ -11,15 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@SessionAttributes("student")
 @Controller
 public class GradesController {
 
@@ -40,7 +41,7 @@ public class GradesController {
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
-        Optional<User> user = userService.findById(71);
+        Optional<User> user = userService.findById(grade.getStudentId());
         user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         gradeService.crateGrade(grade);
 
@@ -49,18 +50,21 @@ public class GradesController {
         return "redirect:notaAdaugata";
     }
 
-    @RequestMapping(value = "/getGrades", method = RequestMethod.GET)
-    public String getGrades(/*@ModelAttribute("grades")*/ Model model) {
+    @GetMapping(value = "/getGrades")
+    public ModelAndView getGrades(@ModelAttribute("student") Student student, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
+        student = (Student) model.getAttribute("student");
+        ModelAndView model1 = new ModelAndView("note");
+
         populateForm(model);
-        List<Grade> grades = gradeService.getAllGrades(17);
+        List<Grade> grades = gradeService.getStudentGrades((int) student.getUserId());
 
         for (Grade grade : grades) {
-            Optional<User> user = userService.findById(17);
+            Optional<User> user = userService.findById(student.getUserId());
             user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         }
 
         model.addAttribute("grades", grades);
-        return "note";
+        return model1;
     }
 
     @RequestMapping(value = "/notaAdaugata", method = RequestMethod.GET)

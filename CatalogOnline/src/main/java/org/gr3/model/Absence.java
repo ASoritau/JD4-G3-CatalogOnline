@@ -11,7 +11,7 @@ public class Absence {
     private Date date;
     private Integer subject_id;
     private String subject_name;
-    private Integer user_id;
+    private int studentId;
     private String student_name;
 
     @Id
@@ -21,10 +21,10 @@ public class Absence {
     public Absence() {
     }
 
-    public Absence(Date date, Integer subject_id, Integer user_id, String student_name) {
+    public Absence(Date date, Integer subject_id, int studentId, String student_name) {
         this.date = date;
         this.subject_id = subject_id;
-        this.user_id = user_id;
+        this.studentId = studentId;
         this.student_name = student_name;
     }
 
@@ -68,11 +68,11 @@ public class Absence {
         this.subject_name = subject_name;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

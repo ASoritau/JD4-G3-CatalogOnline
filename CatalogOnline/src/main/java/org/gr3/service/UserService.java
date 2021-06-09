@@ -23,9 +23,9 @@ public class UserService {
         return userRepo.findById(userId);
     }
 
-//    public User findByName(String username) {
-//        return userRepo.findByUsername(username);
-//    }
+    public User findByFirstName(String firstName) {
+        return userRepo.findByFirstName(firstName);
+    }
 
     public User login(User user) {
         User loginUser = userRepo.findByEmail(user.getEmail());
@@ -65,8 +65,7 @@ public class UserService {
                 LOGGER.info("User \"" + t.getFirstName() + " " + t.getLastName() + "\" has been registered as Teacher.");
             }
 
-        }
-        else {
+        } else {
             LOGGER.info("User was found in the database.");
         }
     }
