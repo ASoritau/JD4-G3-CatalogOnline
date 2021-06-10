@@ -25,6 +25,10 @@ public class UserService {
         return userRepo.findByUsername(username);
     }
 
+    public User findById(Long id) {
+        return userRepo.findByUserId(id);
+    }
+
     public User login(User user) {
         User loginUser = userRepo.findByEmail(user.getEmail());
 

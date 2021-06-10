@@ -8,10 +8,10 @@ import java.sql.Date;
 
 @Entity
 public class Grade {
-    private String subject;
+    private Long subject_id;
     private int grade;
     private Date date;
-    private int student_id;
+    private Long student_id;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,19 +20,19 @@ public class Grade {
 
     }
 
-    public Grade(String subject, int grade, Date date, int student_id) {
-        this.subject = subject;
+    public Grade(Long subject_id, int grade, Date date, Long student_id) {
+        this.subject_id = subject_id;
         this.grade = grade;
         this.date = date;
         this.student_id = student_id;
     }
 
-    public String getSubject() {
-        return subject;
+    public Long getSubject_id() {
+        return subject_id;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setSubject(Long subject) {
+        this.subject_id = subject;
     }
 
     public int getGrade() {
@@ -51,11 +51,11 @@ public class Grade {
         this.date = date;
     }
 
-    public int getStudent_id() {
+    public Long getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(int student_id) {
+    public void setStudent_id(Long student_id) {
         this.student_id = student_id;
     }
 

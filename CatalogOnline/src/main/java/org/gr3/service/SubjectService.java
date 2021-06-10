@@ -25,4 +25,7 @@ public class SubjectService {
         LOGGER.info("Subject with name \"" + subject.getName() + "\" was created.");
     }
 
+    public Subject findBySubjectId(Long id) {
+        return subjectRepo.findBySubjectId(id);
+    }
 }

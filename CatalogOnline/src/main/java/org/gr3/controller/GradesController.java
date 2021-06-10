@@ -54,7 +54,7 @@ public class GradesController {
         model.addAttribute("students", userService.getAllUsers().stream().filter(k -> (k instanceof Student))
                 .collect(Collectors.toMap(User::getUserId, k -> (k.getFirstName() + " " + k.getLastName()))));
         model.addAttribute("subjects", subjectService.getAllSubjects().stream()
-                .collect(Collectors.toMap(Subject::getId, k -> (k.getName()))));
+                .collect(Collectors.toMap(Subject::getSubjectId, k -> (k.getName()))));
         model.addAttribute("grades", new ArrayList<>(gradeService.getPossibleGrades()));
     }
 }

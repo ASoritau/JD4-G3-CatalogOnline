@@ -32,7 +32,11 @@ public class GradeService {
         LOGGER.debug("Grade added successfully.");
     }
 
-    public List<Grade> getAllGrades(Integer studentId){
+    public List<Grade> getAllGradesForStudent(Integer studentId){
+        return gradeRepo.findAll();
+    }
+
+    public List<Grade> getAllGrades(){
         return gradeRepo.findAll();
     }
 }

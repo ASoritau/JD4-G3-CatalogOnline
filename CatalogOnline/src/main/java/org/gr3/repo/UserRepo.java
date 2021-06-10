@@ -1,6 +1,5 @@
 package org.gr3.repo;
 
-import org.gr3.model.Student;
 import org.gr3.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -23,4 +22,6 @@ public interface UserRepo extends CrudRepository<User, Long> {
     public List<User> findAll();
 
     public User findByEmail(String email);
+
+    User findByUserId(Long id);
 }

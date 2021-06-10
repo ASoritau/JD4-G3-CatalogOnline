@@ -13,7 +13,7 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long SubjectId;
 
     public Subject(){}
 
@@ -29,12 +29,12 @@ public class Subject {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public Long getSubjectId() {
+        return SubjectId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSubjectId(Long subjectId) {
+        this.SubjectId = subjectId;
     }
 
     public Long getTeacherId() {

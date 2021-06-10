@@ -24,7 +24,7 @@
 						<td>Subject :</td>
 						<td>
 							<select name="subject" th:field="*{subject}" required="required">
-								<option value="">(Choose the subject)</option>
+								<option value="0">(Choose the subject)</option>
 								<option th:each="subject : ${subjects}" th:value="${subject.key}" th:text="${subject.value}"></option>
 							</select>
 						</td>
