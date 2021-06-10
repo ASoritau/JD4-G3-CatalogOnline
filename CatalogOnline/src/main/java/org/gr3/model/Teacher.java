@@ -9,6 +9,8 @@ import javax.persistence.Table;
 @DiscriminatorValue("Teacher")
 public class Teacher extends User {
     private String numarContract;
+    private String subject;
+    private Integer subjectId;
 
     public Teacher() {
 
@@ -24,5 +26,21 @@ public class Teacher extends User {
 
     public String getNumarContract() {
         return numarContract;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 }
