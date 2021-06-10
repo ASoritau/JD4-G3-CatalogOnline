@@ -33,7 +33,8 @@ public class LoginController {
     public String login(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "login";
+//        return "login";
+        return "loginPage";
     }
 
     @RequestMapping(value = "/loginUser", method = RequestMethod.POST)
