@@ -56,9 +56,15 @@ public class AbsenceController {
 
     @RequestMapping(value = "/createAbsence", method = RequestMethod.POST)
     public String createAbsence(@ModelAttribute("absence") Absence absence, BindingResult errors, Model model) {
+        absence = (Absence) model.getAttribute("absence");
+        Subject subject = subjectService.findByName(absence.getSubject_name());
+        absence.setSubject_id(subject.getId());
+
         populateForm(model);
-        Optional<User> user = userService.findById(73);
-        user.ifPresent(value -> absence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+        Optional<User> user = userService.findById(absence.getStudentId());
+
+        Absence finalAbsence = absence;
+        user.ifPresent(value -> finalAbsence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
         absenceService.createAbsence(absence);
 
         //reset form

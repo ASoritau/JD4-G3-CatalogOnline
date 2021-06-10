@@ -25,6 +25,10 @@ public class SubjectService {
         return subjectRepo.findById(id);
     }
 
+    public Subject findByName(String name) {
+        return subjectRepo.findByName(name);
+    }
+
     public void createSubject(Subject subject) {
         subjectRepo.save(subject);
         LOGGER.info("Subject with name \"" + subject.getName() + "\" was created.");

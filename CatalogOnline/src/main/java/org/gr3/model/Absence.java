@@ -9,7 +9,7 @@ import java.sql.Date;
 @Entity
 public class Absence {
     private Date date;
-    private Integer subject_id;
+    private Long subject_id;
     private String subject_name;
     private int studentId;
     private String student_name;
@@ -21,7 +21,7 @@ public class Absence {
     public Absence() {
     }
 
-    public Absence(Date date, Integer subject_id, int studentId, String student_name) {
+    public Absence(Date date, Long subject_id, int studentId, String student_name) {
         this.date = date;
         this.subject_id = subject_id;
         this.studentId = studentId;
@@ -52,11 +52,11 @@ public class Absence {
         this.student_name = student_name;
     }
 
-    public Integer getSubject_id() {
+    public Long getSubject_id() {
         return subject_id;
     }
 
-    public void setSubject_id(Integer subject_id) {
+    public void setSubject_id(Long subject_id) {
         this.subject_id = subject_id;
     }
 
