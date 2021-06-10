@@ -11,11 +11,7 @@ public class User {
     protected String dtype;
 
     private String password;
-
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
     private String email;
     private String phoneNumber;
@@ -34,16 +30,16 @@ public class User {
         this.address = address;
     }
 
+    public User() {
+
+    }
+
     public String getDtype() {
         return dtype;
     }
 
     public void setDtype(String dtype) {
         this.dtype = dtype;
-    }
-
-    public User() {
-
     }
 
     public String getPassword() {

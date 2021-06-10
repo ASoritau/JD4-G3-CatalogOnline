@@ -42,7 +42,7 @@ public class GradesController {
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
         Optional<User> user = userService.findById(grade.getStudentId());
-        user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+        user.ifPresent(value -> grade.setStudentName(value.getFirstName() + " " + value.getLastName()));
         gradeService.crateGrade(grade);
 
         //reset form
@@ -60,7 +60,7 @@ public class GradesController {
 
         for (Grade grade : grades) {
             Optional<User> user = userService.findById(student.getUserId());
-            user.ifPresent(value -> grade.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+            user.ifPresent(value -> grade.setStudentName(value.getFirstName() + " " + value.getLastName()));
         }
 
         model.addAttribute("grades", grades);
