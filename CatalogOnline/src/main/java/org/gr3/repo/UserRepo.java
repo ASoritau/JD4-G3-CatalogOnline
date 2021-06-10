@@ -1,6 +1,5 @@
 package org.gr3.repo;
 
-import org.gr3.model.Student;
 import org.gr3.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

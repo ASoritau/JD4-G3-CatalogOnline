@@ -38,7 +38,7 @@
                     <td th:text="${grade.date}"/>
                     <td th:text="${grade.grade}"/>
                     <td th:text="${grade.subject}"/>
-                    <td th:text="${grade.student_name}"/>
+                    <td th:text="${grade.studentName}"/>
                 </tr>
             </table>
             </article>
@@ -54,8 +54,8 @@
             <h1 class="italic">Cathegories</h1>
             <ul>
                 <li><a href="materii.html">Subjects</a></li>
-                <li><a href="note.html">Grades</a></li>
-                <li><a href="absente.html">Absences</a></li>
+                <li><a th:href="@{getGrades}">Grades</a></li>
+                <li><a th:href="@{getAbsences}">Absences</a></li>
             </ul>
 
 

@@ -31,8 +31,8 @@
                     <td th:text="${absence.date}"/>
 <!--                    <td th:text="${absence.subject_id}"/>-->
 <!--                    <td th:text="${absence.user_id}"/>-->
-                    <td th:text="${absence.subject_name}"/>
-                    <td th:text="${absence.student_name}"/>
+                    <td th:text="${absence.subjectName}"/>
+                    <td th:text="${absence.studentName}"/>
                 </tr>
             </table>
 
@@ -49,8 +49,8 @@
             <h1 class="italic">Categories</h1>
             <ul>
                 <li><a href="materii.html">Subjects</a></li>
-                <li><a href="note.html">Grades</a></li>
-                <li><a href="absente.html">Absence</a></li>
+                <li><a th:href="@{getGrades}">Grades</a></li>
+                <li><a th:href="@{getAbsences}">Absences</a></li>
             </ul>
 
 

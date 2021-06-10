@@ -12,7 +12,7 @@ public class Grade {
     private int grade;
     private Date date;
     private int studentId;
-    private String student_name;
+    private String studentName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,11 +69,11 @@ public class Grade {
         this.studentId = studentId;
     }
 
-    public String getStudent_name() {
-        return student_name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 }

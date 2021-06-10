@@ -9,10 +9,10 @@ import java.sql.Date;
 @Entity
 public class Absence {
     private Date date;
-    private Integer subject_id;
-    private String subject_name;
+    private Long subjectId;
+    private String subjectName;
     private int studentId;
-    private String student_name;
+    private String studentName;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,11 +21,11 @@ public class Absence {
     public Absence() {
     }
 
-    public Absence(Date date, Integer subject_id, int studentId, String student_name) {
+    public Absence(Date date, Long subjectId, int studentId, String studentName) {
         this.date = date;
-        this.subject_id = subject_id;
+        this.subjectId = subjectId;
         this.studentId = studentId;
-        this.student_name = student_name;
+        this.studentName = studentName;
     }
 
     public Date getDate() {
@@ -44,28 +44,12 @@ public class Absence {
         this.id = id;
     }
 
-    public String getStudent_name() {
-        return student_name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
-    }
-
-    public Integer getSubject_id() {
-        return subject_id;
-    }
-
-    public void setSubject_id(Integer subject_id) {
-        this.subject_id = subject_id;
-    }
-
-    public String getSubject_name() {
-        return subject_name;
-    }
-
-    public void setSubject_name(String subject_name) {
-        this.subject_name = subject_name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public int getStudentId() {
@@ -74,5 +58,21 @@ public class Absence {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 }

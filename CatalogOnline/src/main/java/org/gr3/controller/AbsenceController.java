@@ -47,7 +47,7 @@ public class AbsenceController {
 
         for (Absence absence : absences) {
             Optional<User> user = userService.findById(student.getUserId());
-            user.ifPresent(value -> absence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+            user.ifPresent(value -> absence.setStudentName(value.getFirstName() + " " + value.getLastName()));
         }
 
         model.addAttribute("absences", absences);
@@ -56,9 +56,15 @@ public class AbsenceController {
 
     @RequestMapping(value = "/createAbsence", method = RequestMethod.POST)
     public String createAbsence(@ModelAttribute("absence") Absence absence, BindingResult errors, Model model) {
+        absence = (Absence) model.getAttribute("absence");
+        Subject subject = subjectService.findByName(absence.getSubjectName());
+        absence.setSubjectId(subject.getId());
+
         populateForm(model);
-        Optional<User> user = userService.findById(73);
-        user.ifPresent(value -> absence.setStudent_name(value.getFirstName() + " " + value.getLastName()));
+        Optional<User> user = userService.findById(absence.getStudentId());
+
+        Absence finalAbsence = absence;
+        user.ifPresent(value -> finalAbsence.setStudentName(value.getFirstName() + " " + value.getLastName()));
         absenceService.createAbsence(absence);
 
         //reset form

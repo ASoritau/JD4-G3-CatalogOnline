@@ -16,13 +16,11 @@
 	<div id="continut_pag">
 	<main>
 		<h1 class="italic centrat"><span class="litera
-			italic">A</span>uthentication</h1><br />
+			italic">A</span>Authentication</h1><br />
 			<form class="center register-form login-center" name="formular" action="#" th:action="@{/loginUser}" th:object="${user}" method="post">
 				<table class="login centrat">
 					<tr>
-<!--						<td>Nume</td>-->
 						<td><label th:text="'Email: '"/></td>
-<!--						<td><input type="text" name="numeletau" /></td>-->
 						<td><input type="text" th:field="*{email}"/></td>
 					</tr>
 					<tr>
