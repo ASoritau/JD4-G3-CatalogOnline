@@ -10,12 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SessionAttributes("user")
 @Controller
 public class LoginController {
 
@@ -33,7 +33,6 @@ public class LoginController {
     public String login(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-//        return "login";
         return "loginPage";
     }
 
@@ -55,6 +54,24 @@ public class LoginController {
         model.addAttribute("user", emptyUser);
 
         return "register";
+    }
+
+    @RequestMapping("/registerTeacher")
+    public String registerTeacher(Model model, RedirectAttributes redirectAttributes) {
+        Teacher emptyUser = new Teacher("Teacher");
+        model.addAttribute("user", emptyUser);
+        redirectAttributes.addFlashAttribute("user", emptyUser);
+
+        return "teacherRegisterPage";
+    }
+
+    @RequestMapping("/registerStudent")
+    public String registerStudent(Model model, RedirectAttributes redirectAttributes) {
+        Student emptyUser = new Student("Student");
+        model.addAttribute("user", emptyUser);
+        redirectAttributes.addFlashAttribute("user", emptyUser);
+
+        return "studentRegisterPage";
     }
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
