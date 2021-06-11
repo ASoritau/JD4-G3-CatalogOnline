@@ -14,6 +14,10 @@ public class Student extends User {
 
     }
 
+    public Student(String dtype) {
+        super(dtype);
+    }
+
     public Student(String password, String firstName, String lastName, String email, String phoneNumber, String address) {
         super(password, firstName, lastName, email, phoneNumber, address);
     }

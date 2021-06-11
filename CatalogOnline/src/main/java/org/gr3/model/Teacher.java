@@ -16,6 +16,10 @@ public class Teacher extends User {
 
     }
 
+    public Teacher(String dtype) {
+        super(dtype);
+    }
+
     public Teacher(String password, String firstName, String lastName, String email, String phoneNumber, String address) {
         super(password, firstName, lastName, email, phoneNumber, address);
     }

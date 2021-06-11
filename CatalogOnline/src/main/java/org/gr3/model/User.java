@@ -30,6 +30,10 @@ public class User {
         this.address = address;
     }
 
+    public User(String dtype) {
+        this.dtype = dtype;
+    }
+
     public User() {
 
     }

@@ -57,6 +57,7 @@ public class UserService {
                 userRepo.save(s);
                 LOGGER.info("User \"" + s.getFirstName() + " " + s.getLastName() + "\" has been registered as Student.");
             }
+
             if (user.getDtype().equals("Teacher")) {
                 t = new Teacher(user.getPassword(), user.getFirstName(),
                         user.getLastName(), user.getEmail(), user.getPhoneNumber(), user.getAddress());
