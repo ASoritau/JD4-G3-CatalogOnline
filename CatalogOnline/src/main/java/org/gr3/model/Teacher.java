@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Teacher extends User {
     private String numarContract;
     private String subject;
-    private Integer subjectId;
+    private Long subjectId;
 
     public Teacher() {
 
@@ -40,11 +40,11 @@ public class Teacher extends User {
         this.subject = subject;
     }
 
-    public int getSubjectId() {
+    public Long getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Long subjectId) {
         this.subjectId = subjectId;
     }
 }

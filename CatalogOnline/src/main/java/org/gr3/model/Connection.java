@@ -11,10 +11,10 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int userId;
-    private Integer subjectId;
+    private Long userId;
+    private Long subjectId;
 
-    public Connection(int userId, int subjectId) {
+    public Connection(Long userId, Long subjectId) {
         this.userId = userId;
         this.subjectId = subjectId;
     }
@@ -31,19 +31,19 @@ public class Connection {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public int getSubjectId() {
+    public Long getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Long subjectId) {
         this.subjectId = subjectId;
     }
 }

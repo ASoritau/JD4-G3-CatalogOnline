@@ -1,8 +1,10 @@
 package org.gr3.controller;
 
 import org.gr3.model.Student;
+import org.gr3.model.Subject;
 import org.gr3.model.Teacher;
 import org.gr3.model.User;
+import org.gr3.service.SubjectService;
 import org.gr3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SubjectService subjectService;
 
     private List<User> loggedInUsers = new ArrayList();
 
@@ -59,7 +64,7 @@ public class LoginController {
     @RequestMapping("/registerTeacher")
     public String registerTeacher(Model model, RedirectAttributes redirectAttributes) {
         Teacher emptyUser = new Teacher("Teacher");
-        model.addAttribute("user", emptyUser);
+        model.addAttribute("teacher", emptyUser);
         redirectAttributes.addFlashAttribute("user", emptyUser);
 
         return "teacherRegisterPage";
@@ -83,7 +88,20 @@ public class LoginController {
         userService.register(user);
         System.out.println(user);
 
-        return "login";
+        return "loginPage";
+    }
+
+    @RequestMapping(value = "/saveTeacher", method = RequestMethod.POST)
+    public String saveTeacher(@ModelAttribute("teacher") @Validated Teacher teacher, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+
+        subjectService.createSubject(new Subject(teacher.getSubject()));
+        userService.registerTeacher(teacher);
+        System.out.println(teacher);
+
+        return "loginPage";
     }
 
     @GetMapping(path = "/allUsers")
