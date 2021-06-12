@@ -35,7 +35,8 @@ public class AbsenceController {
     public String showAbsenceForm(Model model) {
         populateForm(model);
         model.addAttribute("absence", new Absence());
-        return "adaugareabsente";
+//        return "adaugareabsente";
+        return "AddAbsencePage";
     }
 
     @RequestMapping(value = "/getAbsences", method = RequestMethod.GET)

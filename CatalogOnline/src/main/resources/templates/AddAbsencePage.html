@@ -10,11 +10,13 @@
 <body>
 <div class="main">
   <div class="container">
+
+    <form name="formular" enctype="multipart/form-data" method="post"
+          action="#" th:action="@{/createAbsence}" th:object="${absence}">
     <div class="row align-items-center" style="margin-top: 20%">
 
 
-      <form name="formular" enctype="multipart/form-data" method="post"
-            action="#" th:action="@{/createAbsence}" th:object="${absence}">
+
         <div class="col-md-6" style="text-align: center">
           <div class="row" >
               <h3 style="color: #006B71; margin-bottom: 25px" ><b> Add Absence</b> <br> </h3>

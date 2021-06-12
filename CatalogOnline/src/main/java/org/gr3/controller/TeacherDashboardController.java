@@ -39,7 +39,8 @@ public class TeacherDashboardController {
         List<Grade> grades = gradeService.getAllGrades();
         redirectAttributes.addFlashAttribute("teacher", teacher);
         redirectAttributes.addAttribute("grades", grades);
-        return "teacherDashboard";
+//        return "teacherDashboard1";
+        return "TeacherDashboard";
     }
 
     private List<List<String>> getStudentsData() {

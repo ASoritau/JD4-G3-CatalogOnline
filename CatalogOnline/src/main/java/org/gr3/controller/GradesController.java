@@ -41,14 +41,16 @@ public class GradesController {
         model.addAttribute("grade", new Grade());
         model.addAttribute("teacher", teacher);
         teacher = (Teacher) model.getAttribute("teacher");
-        populateTeacherForm(model, (int) teacher.getUserId());
+//        populateTeacherForm(model, (int) teacher.getUserId());
+        populateTeacherForm(model, teacher);
 
-        Connection teacherSubject = teacherService.getTeacherSpecialization((int) teacher.getUserId());
-        teacher.setSubjectId(teacherSubject.getSubjectId());
+//        Connection teacherSubject = teacherService.getTeacherSpecialization((int) teacher.getUserId());
+//        teacher.setSubjectId(teacherSubject.getSubjectId());
 
         redirectAttributes.addFlashAttribute("teacher", teacher);
 
         return "adaugarenote";
+//        return "AddGradePage";
     }
 
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
@@ -95,19 +97,20 @@ public class GradesController {
         model.addAttribute("grades", new ArrayList<>(gradeService.getPossibleGrades()));
     }
 
-    private void populateTeacherForm(Model model, int teacherId) {
+    private void populateTeacherForm(Model model, Teacher teacher /*int teacherId*/) {
         List<Subject> allSubjects = subjectService.getAllSubjects();
-        List<Connection> connections = connectionService.getAllConnections();
-
-        Optional<Connection> teacherConnection = connections.stream().filter(connection -> teacherId == connection.getUserId()).findFirst();
-        List<Subject> teacherSubjects = allSubjects.stream().filter(subject -> teacherConnection.get().getSubjectId() == subject.getId()).collect(Collectors.toList());
+//        List<Connection> connections = connectionService.getAllConnections();
+//
+//        Optional<Connection> teacherConnection = connections.stream().filter(connection -> teacherId == connection.getUserId()).findFirst();
+//        List<Subject> teacherSubjects = allSubjects.stream().filter(subject -> teacherConnection.get().getSubjectId() == subject.getId()).collect(Collectors.toList());
 //        List<Subject> teacherSubjects = (List<Subject>) allSubjects.stream().filter(subject -> teacherId == teacherConnection.get().getSubjectId());
 
         model.addAttribute("students", userService.getAllUsers().stream().filter(k -> (k instanceof Student))
                 .collect(Collectors.toMap(User::getUserId, k -> (k.getFirstName() + " " + k.getLastName()))));
-        model.addAttribute("subjects", teacherSubjects.stream()
-//                .collect(Collectors.toMap(Subject::getId, k -> (k.getName()))));
-                .collect(Collectors.toMap(Subject::getName, k -> (k.getName()))));
+//        model.addAttribute("subjects", teacherSubjects.stream()
+////                .collect(Collectors.toMap(Subject::getId, k -> (k.getName()))));
+//                .collect(Collectors.toMap(Subject::getName, k -> (k.getName()))));
+        model.addAttribute("subject", teacher.getSubject());
         model.addAttribute("grades", new ArrayList<>(gradeService.getPossibleGrades()));
     }
 }
