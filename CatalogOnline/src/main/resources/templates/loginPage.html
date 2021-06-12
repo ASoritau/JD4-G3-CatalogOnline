@@ -14,8 +14,8 @@
         <div class="row align-items-center" style="margin-top: 20%">
 
             <div class="col-md-6" style="text-align: center">
-                <img src="imagini/SVG/logo.svg" style="width:80%" alt="Catalog Online Logo">
-                <h3 style="color: #006B71; margin-bottom: 25px"><b></b> <br></h3>
+
+                <h3 style="color: #006B71; margin-bottom: 25px"><b> Catalog online</b> <br></h3>
 
                 <form action="#" th:action="@{/loginUser}" th:object="${user}" method="post">
                     <div class="form-group" style="margin-bottom: 20px">
@@ -38,16 +38,14 @@
 
                     <div class="row">
                         <button type="submit" class="btn btn-black"
-                                style="background: #006B71; color: white; width: 50%; margin: auto">Register
+                                style="background: #006B71; color: white; width: 50%; margin: auto" href="/registerStudent">Register
                         </button>
                     </div>
 
                 </form>
 
-                <p style="margin-top: 20px">Are you a teacher, but you don't have an account? <a
-                        th:href="@{registerTeacher}"> <br>Register as teacher here</a></p>
-                <p style="margin-top: 20px">Are you a student, but you don't have an account? <a
-                        th:href="@{registerStudent}"> <br>Register as student here</a></p>
+                <p style="margin-top: 20px">Are you a professor but you don't have an account? <a
+                        href="/registerTeacher"> <br>Register</a> here </p>
             </div>
 
             <div class="col-md-6" style="background-color: #F2F8F8; height: 100%">
