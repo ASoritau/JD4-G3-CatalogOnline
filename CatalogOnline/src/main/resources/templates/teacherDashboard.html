@@ -13,6 +13,37 @@
 <textarea th:text="${teacher.firstName}"></textarea>
 <textarea th:text="${teacher.lastName}"></textarea>
 <textarea th:text="${teacher.userId}"></textarea>
+
+<table border="1" class="table center">
+    <!--                    <tr>-->
+    <!--                        <td><label th:text="'Username: '" /></td>-->
+    <!--                        <td><input type="text" th:field="*{username}" required/></td>-->
+    <!--                        <p th:each="error: ${#fields.errors('username')}"-->
+    <!--                           th:text="${error}">Validation error</p>-->
+    <!--                    </tr>-->
+
+    <tr>
+        <td><label>Student Name</label></td>
+        <td><label>Grade</label></td>
+        <td><label>Grade Date</label></td>
+        <td><label>Absence</label></td>
+        <td><label>Actions</label></td>
+    </tr>
+    <tr th:each="grade : ${grades}">
+        <td th:text="${grade.grade}" />
+        <td th:text="${grade.date}" />
+        <td th:text="${grade.studentId}" />
+    </tr>
+<!--        <td><label th:text="'First Name: '" /></td>-->
+<!--        <td><te type="text" th:field="*{firstName}" required/></td>-->
+<!--        <p th:each="error: ${#fields.errors('firstName')}"-->
+<!--           th:text="${error}">Validation error</p>-->
+<!--        <td><label th:text="'Last Name: '" /></td>-->
+<!--        <td><input type="text" th:field="*{lastName}" required/></td>-->
+<!--        <p th:each="error : ${#fields.errors('lastName')}"-->
+<!--           th:text="${error}">Validation error</p>-->
+<!--    </tr>-->
+</table>
 <!--<textarea th:text="${teacher.userId}"></textarea>-->
 
 <nav>

@@ -1,8 +1,10 @@
 package org.gr3.service;
 
 import org.gr3.model.Student;
+import org.gr3.model.Subject;
 import org.gr3.model.Teacher;
 import org.gr3.model.User;
+import org.gr3.repo.SubjectRepo;
 import org.gr3.repo.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private SubjectRepo subjectRepo;
 
     private Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
@@ -66,6 +71,20 @@ public class UserService {
                 LOGGER.info("User \"" + t.getFirstName() + " " + t.getLastName() + "\" has been registered as Teacher.");
             }
 
+        } else {
+            LOGGER.info("User was found in the database.");
+        }
+    }
+
+    public void registerTeacher(Teacher teacher) {
+        User existingUser = userRepo.findByEmail(teacher.getEmail());
+
+        if (existingUser == null || !existingUser.getEmail().equals(teacher.getEmail())) {
+            Subject subject = subjectRepo.findByName(teacher.getSubject());
+
+            teacher.setSubjectId(subject.getId());
+            userRepo.save(teacher);
+            LOGGER.info("User \"" + teacher.getFirstName() + " " + teacher.getLastName() + "\" has been registered as Teacher.");
         } else {
             LOGGER.info("User was found in the database.");
         }
