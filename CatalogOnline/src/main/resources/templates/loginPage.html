@@ -37,14 +37,21 @@
                     <hr style="margin-top: 20px; margin-bottom: 20px">
 
                     <div class="row">
-                        <button type="submit" class="btn btn-black"
-                                style="background: #006B71; color: white; width: 50%; margin: auto" href="/registerStudent">Register
-                        </button>
+<!--                        <button type="submit" class="btn btn-black"-->
+<!--                                style="background: #006B71; color: white; width: 50%; margin: auto" href="/registerStudent">Register-->
+<!--                        </button>-->
+
+
+
                     </div>
 
                 </form>
 
-                <p style="margin-top: 20px">Are you a professor but you don't have an account? <a
+                <a th:href="@{registerStudent}"><button type="submit" class="btn btn-black"
+                                                        style="background: #006B71; color: white; width: 50%; margin: auto">Register
+                </button></a>
+
+                <p style="margin-top: 20px">Are you a teacher, but you don't have an account? <a
                         href="/registerTeacher"> <br>Register</a> here </p>
             </div>
 
