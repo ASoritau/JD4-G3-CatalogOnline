@@ -32,6 +32,10 @@ public class UserService {
         return userRepo.findByFirstName(firstName);
     }
 
+    public User findByFirstNameAndLastName(String firstName, String lastName) {
+        return userRepo.findByFirstNameAndLastName(firstName, lastName);
+    }
+
     public User login(User user) {
         User loginUser = userRepo.findByEmail(user.getEmail());
 

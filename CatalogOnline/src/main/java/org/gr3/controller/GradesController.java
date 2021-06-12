@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,16 +50,23 @@ public class GradesController {
 
         redirectAttributes.addFlashAttribute("teacher", teacher);
 
-        return "adaugarenote";
-//        return "AddGradePage";
+//        return "adaugarenote";
+        return "AddGradePage";
     }
 
     @RequestMapping(value = "/createGrade", method = RequestMethod.POST)
     public String crateGrade(@ModelAttribute("grade") Grade grade, BindingResult errors, Model model) {
         populateForm(model);
-//        populateTeacherForm(model, (int) teacher.getUserId());
-        Optional<User> user = userService.findById(grade.getStudentId());
-        user.ifPresent(value -> grade.setStudentName(value.getFirstName() + " " + value.getLastName()));
+
+        String studentName = grade.getStudentName();
+        List<String> splitted = Arrays.asList(studentName.split("\\s+"));
+        User user = userService.findByFirstNameAndLastName(splitted.get(0), splitted.get(1));
+
+//        grade.setStudentName(user.getFirstName() + " " + user.getLastName());
+        grade.setStudentId((int) user.getUserId());
+
+        Teacher teacher = (Teacher) model.getAttribute("teacher");
+        grade.setSubject(teacher.getSubject());
         gradeService.crateGrade(grade);
 
         //reset form
