@@ -62,15 +62,9 @@ public class GradesController {
             Teacher teacher = (Teacher) model.getAttribute("teacher");
             grade.setSubject(teacher.getSubject());
             gradeService.crateGrade(grade);
-
-            //reset form
-            model.addAttribute("grade", new Grade());
-            return "redirect:notaAdaugata";
         }
 
-        else {
-            return "redirect:teacherDashboard";
-        }
+        return "redirect:teacherDashboard";
 
     }
 
