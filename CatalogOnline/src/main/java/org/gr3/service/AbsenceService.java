@@ -29,4 +29,8 @@ public class AbsenceService {
     public List<Absence> getStudentAbsences(int studentId){
         return absenceRepo.findByStudentId(studentId);
     }
+
+    public List<Absence> getStudentAbsencesForSubject(int studentId, String subject) {
+        return absenceRepo.findByStudentIdAndSubjectName(studentId, subject);
+    }
 }

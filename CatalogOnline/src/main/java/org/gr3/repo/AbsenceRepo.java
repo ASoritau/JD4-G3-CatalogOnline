@@ -13,4 +13,5 @@ public interface AbsenceRepo extends CrudRepository<Absence, Long> {
 
     List<Absence> findByStudentId(int studentId);
 
+    List<Absence> findByStudentIdAndSubjectName(int studentId, String subjectName);
 }

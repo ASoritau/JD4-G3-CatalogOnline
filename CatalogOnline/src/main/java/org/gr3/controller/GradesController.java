@@ -65,7 +65,6 @@ public class GradesController {
         }
 
         return "redirect:teacherDashboard";
-
     }
 
     @GetMapping(value = "/getGrades")
