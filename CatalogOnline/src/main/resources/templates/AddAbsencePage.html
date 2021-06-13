@@ -10,21 +10,21 @@
 <body>
 <div class="main">
   <div class="container">
+
+    <form name="formular" enctype="multipart/form-data" method="post"
+          action="#" th:action="@{/createAbsence}" th:object="${absence}">
     <div class="row align-items-center" style="margin-top: 20%">
 
-
-      <form name="formular" enctype="multipart/form-data" method="post"
-            action="#" th:action="@{/createAbsence}" th:object="${absence}">
         <div class="col-md-6" style="text-align: center">
           <div class="row" >
               <h3 style="color: #006B71; margin-bottom: 25px" ><b> Add Absence</b> <br> </h3>
 
               <div class="form-group" style="margin-bottom: 20px">
-                <input style="border-color: #006B71; border-width: 1px" type="text" class="form-control" placeholder= "Student Name">
+                <input style="border-color: #006B71; border-width: 1px" type="text" th:field="*{studentName}" class="form-control" placeholder= "Student Name" required>
               </div>
 
               <div class="form-group" style="margin-bottom: 20px">
-                <input style="border-color: #006B71; border-width: 1px" type="date" class="form-control" placeholder= "Date">
+                <input style="border-color: #006B71; border-width: 1px" type="date" name="date" class="form-control" placeholder= "Date" required>
               </div>
           </div>
 
@@ -37,7 +37,7 @@
 
             <div class="col-md-6">
               <div>
-                <button formaction="#" th:action="@{/teacherDashboard}" type="submit" class="btn btn-black" style="border-color: #006B71; border-style: solid; background: #FFFFFF; color: #006B71; width: 100%">Cancel</button>
+                <a th:href="@{teacherDashboard}"><button value="Cancel" formnovalidate class="btn btn-black" style="border-color: #006B71; border-style: solid; background: #FFFFFF; color: #006B71; width: 100%">Cancel</button></a>
               </div>
             </div>
           </div>

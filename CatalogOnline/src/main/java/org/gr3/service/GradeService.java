@@ -41,4 +41,12 @@ public class GradeService {
     public List<Grade> getStudentGrades(int studentId) {
         return gradeRepo.findByStudentId(studentId);
     }
+
+    public List<Grade> getGradesBySubject(String subjectName) {
+        return gradeRepo.findBySubject(subjectName);
+    }
+
+    public List<Grade> getStudentGradesForSubject(int studentId, String subject) {
+        return gradeRepo.findByStudentIdAndSubject(studentId, subject);
+    }
 }
