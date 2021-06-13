@@ -97,7 +97,12 @@ public class LoginController {
             return "error";
         }
 
-        subjectService.createSubject(new Subject(teacher.getSubject()));
+        List<Subject> existingSubjects = subjectService.getAllSubjects();
+
+        if (existingSubjects.stream().noneMatch(s -> s.getName().equals(teacher.getSubject()))) {
+            subjectService.createSubject(new Subject(teacher.getSubject()));
+        }
+
         userService.registerTeacher(teacher);
         System.out.println(teacher);
 

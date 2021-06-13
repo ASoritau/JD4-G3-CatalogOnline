@@ -1,9 +1,6 @@
 package org.gr3.controller;
 
-import org.gr3.model.Absence;
-import org.gr3.model.Student;
-import org.gr3.model.Subject;
-import org.gr3.model.User;
+import org.gr3.model.*;
 import org.gr3.service.AbsenceService;
 import org.gr3.service.SubjectService;
 import org.gr3.service.UserService;
@@ -16,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@SessionAttributes("student")
+@SessionAttributes({"student", "teacher"})
 @Controller
 public class AbsenceController {
 
@@ -35,7 +33,7 @@ public class AbsenceController {
     public String showAbsenceForm(Model model) {
         populateForm(model);
         model.addAttribute("absence", new Absence());
-//        return "adaugareabsente";
+
         return "AddAbsencePage";
     }
 
@@ -57,20 +55,21 @@ public class AbsenceController {
 
     @RequestMapping(value = "/createAbsence", method = RequestMethod.POST)
     public String createAbsence(@ModelAttribute("absence") Absence absence, BindingResult errors, Model model) {
-        absence = (Absence) model.getAttribute("absence");
-        Subject subject = subjectService.findByName(absence.getSubjectName());
-        absence.setSubjectId(subject.getId());
+        Teacher teacher = (Teacher) model.getAttribute("teacher");
+        String studentName = absence.getStudentName();
 
-        populateForm(model);
-        Optional<User> user = userService.findById(absence.getStudentId());
+        List<String> splittedStudentName = Arrays.asList(studentName.split("\\s+"));
+        User user = userService.findByFirstNameAndLastName(splittedStudentName.get(0), splittedStudentName.get(1));
 
-        Absence finalAbsence = absence;
-        user.ifPresent(value -> finalAbsence.setStudentName(value.getFirstName() + " " + value.getLastName()));
+        absence.setStudentId((int) user.getUserId());
+        absence.setSubjectName(teacher.getSubject());
+        absence.setSubjectId(teacher.getSubjectId());
+
         absenceService.createAbsence(absence);
 
         //reset form
         model.addAttribute("absence", new Absence());
-        return "adaugareabsente";
+        return "AddAbsencePage";
     }
 
     private void populateForm(Model model) {
@@ -81,5 +80,4 @@ public class AbsenceController {
 //        model.addAttribute("absences", absenceService.getAllAbsences().stream()
 //                .collect(Collectors.toMap(Absence::getId, k -> (k.getDate()))));
     }
-
 }
