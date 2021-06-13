@@ -22,13 +22,6 @@ public class Grade {
 
     }
 
-//    public Grade(String subject, int grade, Date date, int studentId) {
-//        this.subject = subject;
-//        this.grade = grade;
-//        this.date = date;
-//        this.studentId = studentId;
-//    }
-
     public Grade(String subject, int grade, Date date, String studentName) {
         this.subject = subject;
         this.grade = grade;

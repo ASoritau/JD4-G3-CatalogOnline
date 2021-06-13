@@ -8,14 +8,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepo extends CrudRepository<User, Long> {
-//    @Query("SELECT u FROM user u WHERE u.UserName=?1")
-//    public List<Student> searchByName(String name);
-//
-//    @Query("SELECT u FROM user u WHERE u.UserName=?1 AND u.dtype = 'Student'")
-//    public Student searchStudentByName(String studentName);
-
-//    @Query("SELECT u FROM user u")
-//    public List<User> findAllUsers();
 
     User findByFirstName(String firstName);
 
