@@ -25,7 +25,7 @@
           <div style="border-left: 2px solid #6a7677; height: 50%;margin-top: 10px; float: right "></div>
         </div>
         <div class="col-md-2">
-          <button formaction="http://google.com" type="button" class="btn btn-black" style="color: #172C1D; width: 50%; margin: auto; font-family: Montserrat">Logout</button>
+          <button type="button" class="btn btn-black" style="color: #172C1D; width: 50%; margin: auto; font-family: Montserrat">Logout</button>
         </div>
 
       </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-5">
           <div class="row" style="margin-left: -25%">
-            <h1 style="font-family: Montserrat"><b>Student name </b></h1>
+            <h1 th:text="${student.firstName} + ' ' + ${student.lastName}" style="font-family: Montserrat"><b>Student name</b></h1>
           </div>
           <div class="row" style="margin-left: -25%">
             <h3 style="color: #6A7677">Class & Specialisation</h3>
