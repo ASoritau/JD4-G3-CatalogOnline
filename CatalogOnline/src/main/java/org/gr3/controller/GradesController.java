@@ -52,18 +52,26 @@ public class GradesController {
         populateForm(model);
 
         String studentName = grade.getStudentName();
-        List<String> splittedStudentName = Arrays.asList(studentName.split("\\s+"));
-        User user = userService.findByFirstNameAndLastName(splittedStudentName.get(0), splittedStudentName.get(1));
 
-        grade.setStudentId((int) user.getUserId());
+        if (!studentName.equals("")) {
+            List<String> splittedStudentName = Arrays.asList(studentName.split("\\s+"));
+            User user = userService.findByFirstNameAndLastName(splittedStudentName.get(0), splittedStudentName.get(1));
 
-        Teacher teacher = (Teacher) model.getAttribute("teacher");
-        grade.setSubject(teacher.getSubject());
-        gradeService.crateGrade(grade);
+            grade.setStudentId((int) user.getUserId());
 
-        //reset form
-        model.addAttribute("grade", new Grade());
-        return "redirect:notaAdaugata";
+            Teacher teacher = (Teacher) model.getAttribute("teacher");
+            grade.setSubject(teacher.getSubject());
+            gradeService.crateGrade(grade);
+
+            //reset form
+            model.addAttribute("grade", new Grade());
+            return "redirect:notaAdaugata";
+        }
+
+        else {
+            return "redirect:teacherDashboard";
+        }
+
     }
 
     @GetMapping(value = "/getGrades")

@@ -58,18 +58,23 @@ public class AbsenceController {
         Teacher teacher = (Teacher) model.getAttribute("teacher");
         String studentName = absence.getStudentName();
 
-        List<String> splittedStudentName = Arrays.asList(studentName.split("\\s+"));
-        User user = userService.findByFirstNameAndLastName(splittedStudentName.get(0), splittedStudentName.get(1));
+        if (!studentName.equals("")) {
+            List<String> splittedStudentName = Arrays.asList(studentName.split("\\s+"));
+            User user = userService.findByFirstNameAndLastName(splittedStudentName.get(0), splittedStudentName.get(1));
 
-        absence.setStudentId((int) user.getUserId());
-        absence.setSubjectName(teacher.getSubject());
-        absence.setSubjectId(teacher.getSubjectId());
+            absence.setStudentId((int) user.getUserId());
+            absence.setSubjectName(teacher.getSubject());
+            absence.setSubjectId(teacher.getSubjectId());
 
-        absenceService.createAbsence(absence);
+            absenceService.createAbsence(absence);
 
-        //reset form
-        model.addAttribute("absence", new Absence());
-        return "AddAbsencePage";
+            //reset form
+            model.addAttribute("absence", new Absence());
+            return "AddAbsencePage";
+        }
+        else {
+            return "redirect:/teacherDashboard";
+        }
     }
 
     private void populateForm(Model model) {
