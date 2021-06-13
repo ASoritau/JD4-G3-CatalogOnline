@@ -17,7 +17,7 @@ public class StudentDashboardController {
         model.addAttribute("student", student);
         student = (Student) model.getAttribute("student");
         redirectAttributes.addFlashAttribute("student", student);
-//        return "studentDashboard1";
+
         return "StudentDashboard";
     }
 }

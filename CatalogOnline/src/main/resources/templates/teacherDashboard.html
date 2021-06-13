@@ -41,22 +41,20 @@
         </div>
         <div class="col-md-5">
           <div class="row" style="margin-left: -25%">
-            <h1 style="font-family: Montserrat"><b>Teacher name </b></h1>
+            <h1 th:text="${teacher.firstName} + ' ' + ${teacher.lastName}" style="font-family: Montserrat"><b>Teacher name</b></h1>
           </div>
           <div class="row" style="margin-left: -25%">
-            <h3 style="color: #6A7677">Specialisation</h3>
+            <h3 th:text="${teacher.subject}" style="color: #6A7677">Specialisation</h3>
           </div>
         </div>
         <div class="col-md-2">
           <div>
-<!--            <button formaction="http://google.com" type="submit" class="btn btn-black" style="background: #006B71; color: white; width: 100%"><b>Add Grade</b></button>-->
             <a th:href="@{adaugarenote}"><button type="submit" class="btn btn-black" style="background: #006B71; color: white; width: 100%"><b>Add Grade</b></button></a>
           </div>
         </div>
         <div class="col-md-2">
           <div>
-<!--            <button formaction="http://google.com" type="submit" class="btn btn-secondary" style="background: #ffffff; color: #006b71; width: 100%"><b>Add Absence</b></button>-->
-            <a th:href="@{absenceForm}"><button formaction="http://google.com" type="submit" class="btn btn-secondary" style="background: #ffffff; color: #006b71; width: 100%"><b>Add Absence</b></button></a>
+            <a th:href="@{absenceForm}"><button type="submit" class="btn btn-secondary" style="background: #ffffff; color: #006b71; width: 100%"><b>Add Absence</b></button></a>
           </div>
         </div>
 
