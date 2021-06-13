@@ -98,5 +98,9 @@ public class UserService {
         return userRepo.findAll();
     }
 
+    public Optional<User> getUserById(Long id) {
+        return userRepo.findById(id);
+    }
+
 //    TODO: metoda care sa verifice daca exista userul
 }

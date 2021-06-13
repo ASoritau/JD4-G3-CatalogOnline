@@ -134,7 +134,7 @@ public class LoginController {
 
         if (user instanceof Teacher) {
             redirectAttributes.addFlashAttribute("teacher", user);
-            return "redirect:/teacherDashboard";
+            return "redirect:/teacherDashboardV2";
         }
 
         return "error";
