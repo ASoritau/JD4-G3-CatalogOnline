@@ -83,27 +83,28 @@ public class TeacherDashboardController {
         String teacherSubject = teacher.getSubject();
         List<Grade> subjectGrades = grades.stream().filter(k -> k.getSubject().equals(teacherSubject)).collect(Collectors.toList());
         List<TeacherDashboardEntry> dashboardData = getRequiredStudentsData(subjectGrades);
+        model.addAttribute("dashboardEntries", dashboardData);
 
-        Student student_RaduAndreescu = (Student) userService.findByFirstNameAndLastName("Radu", "Andreescu");
-        List<Grade> grades_RaduAndreescu = gradeService.getStudentGradesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
-
-        Student student_AlinPascu = (Student) userService.findByFirstNameAndLastName("Alin", "Pascu");
-        List<Grade> grades_AlinPascu = gradeService.getStudentGradesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
-
-        Student student_RaduPop = (Student) userService.findByFirstNameAndLastName("Radu", "Pop");
-        List<Grade> grades_RaduPop = gradeService.getStudentGradesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
-
-        model.addAttribute("grades_RaduAndreescu", grades_RaduAndreescu);
-        model.addAttribute("grades_AlinPascu", grades_AlinPascu);
-        model.addAttribute("grades_RaduPop", grades_RaduPop);
-
-        List<Absence> absences_RaduAndreescu = absenceService.getStudentAbsencesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
-        List<Absence> absences_AlinPascu = absenceService.getStudentAbsencesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
-        List<Absence> absences_RaduPop = absenceService.getStudentAbsencesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
-
-        model.addAttribute("absences_RaduAndreescu", absences_RaduAndreescu);
-        model.addAttribute("absences_AlinPascu", absences_AlinPascu);
-        model.addAttribute("absences_RaduPop", absences_RaduPop);
+//        Student student_RaduAndreescu = (Student) userService.findByFirstNameAndLastName("Radu", "Andreescu");
+//        List<Grade> grades_RaduAndreescu = gradeService.getStudentGradesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
+//
+//        Student student_AlinPascu = (Student) userService.findByFirstNameAndLastName("Alin", "Pascu");
+//        List<Grade> grades_AlinPascu = gradeService.getStudentGradesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
+//
+//        Student student_RaduPop = (Student) userService.findByFirstNameAndLastName("Radu", "Pop");
+//        List<Grade> grades_RaduPop = gradeService.getStudentGradesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
+//
+//        model.addAttribute("grades_RaduAndreescu", grades_RaduAndreescu);
+//        model.addAttribute("grades_AlinPascu", grades_AlinPascu);
+//        model.addAttribute("grades_RaduPop", grades_RaduPop);
+//
+//        List<Absence> absences_RaduAndreescu = absenceService.getStudentAbsencesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
+//        List<Absence> absences_AlinPascu = absenceService.getStudentAbsencesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
+//        List<Absence> absences_RaduPop = absenceService.getStudentAbsencesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
+//
+//        model.addAttribute("absences_RaduAndreescu", absences_RaduAndreescu);
+//        model.addAttribute("absences_AlinPascu", absences_AlinPascu);
+//        model.addAttribute("absences_RaduPop", absences_RaduPop);
 
         return "TeacherDashboard2";
     }
