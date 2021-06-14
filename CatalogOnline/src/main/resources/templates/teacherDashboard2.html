@@ -107,13 +107,15 @@
               </div>
 
 <!--              Grade Rows logic-->
-              <div th:each="grade : ${entry.grades}">
               <div  class="col-md-2">
-                <div class="row" style="text-align: center">
-                  <p th:text="${grade.key}" style="color: #6A7677"></p>
+                <div th:each="grade : ${entry.grades}">
+                  <div class="row" style="text-align: center">
+                    <p th:text="${grade.key}" style="color: #6A7677"></p>
+                  </div>
                 </div>
               </div>
               <div class="col-md-2">
+                <div th:each="grade : ${entry.grades}">
                 <div class="row" style="text-align: center">
                   <p th:text="${grade.value}" style="color: #6A7677"></p>
                 </div>
@@ -122,13 +124,15 @@
               <!--              Grade Rows logic end-->
 
               <!--              Absences Rows logic-->
-              <div th:each="date : ${entry.absenceDates}">
-                <div  class="col-md-2">
+              <div  class="col-md-2">
+                <div th:each="grade : ${entry.absenceDates}">
                   <div class="row" style="text-align: center">
                     <p th:text="1" style="color: #6A7677"></p>
                   </div>
                 </div>
-                <div class="col-md-2">
+              </div>
+              <div class="col-md-2">
+                <div th:each="date : ${entry.absenceDates}">
                   <div class="row" style="text-align: center">
                     <p th:text="${date}" style="color: #6A7677"></p>
                   </div>
