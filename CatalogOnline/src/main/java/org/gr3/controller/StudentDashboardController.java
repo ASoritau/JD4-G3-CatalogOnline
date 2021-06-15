@@ -98,7 +98,7 @@ public class StudentDashboardController {
         List<StudentDashboardEntry> dashboardEntries = new ArrayList<>();
 
         for (String subjectName : subjectNames) {
-            List<Grade> subjectGrades = grades.stream().filter(g -> g.getStudentName().equals(subjectName)).collect(Collectors.toList());
+            List<Grade> subjectGrades = grades.stream().filter(g -> g.getSubject().equals(subjectName)).collect(Collectors.toList());
             List<Absence> subjectAbsences = absences.stream().filter(a -> a.getSubjectName().equals(subjectName)).collect(Collectors.toList());
 
             dashboardEntries.add(new StudentDashboardEntry(subjectName, subjectGrades, subjectAbsences));

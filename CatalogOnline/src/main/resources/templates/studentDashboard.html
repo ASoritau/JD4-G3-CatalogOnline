@@ -43,20 +43,7 @@
         </div>
         <div class="col-md-5">
           <div class="row" style="margin-left: -25%">
-            <h1 th:text="${teacher.firstName} + ' ' + ${teacher.lastName}" style="font-family: Montserrat"><b>Teacher name</b></h1>
-          </div>
-          <div class="row" style="margin-left: -25%">
-            <h3 th:text="${teacher.subject}" style="color: #6A7677">Specialisation</h3>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div>
-            <a th:href="@{adaugarenote}"><button type="submit" class="btn btn-black" style="background: #006B71; color: white; width: 100%"><b>Add Grade</b></button></a>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div>
-            <a th:href="@{absenceForm}"><button type="submit" class="btn btn-secondary" style="background: #ffffff; color: #006b71; width: 100%"><b>Add Absence</b></button></a>
+            <h1 th:text="${student.firstName} + ' ' + ${student.lastName}" style="font-family: Montserrat"><b>Student name</b></h1>
           </div>
         </div>
 
@@ -73,7 +60,7 @@
 
 <!--          Table headers-->
           <div class="col-md-4">
-            <h5 style="color: #6A7677">Student Name</h5>
+            <h5 style="color: #6A7677">Subject</h5>
           </div>
           <div class="col-md-2">
             <h5 style="color: #6A7677">Grade</h5>
@@ -97,13 +84,13 @@
 <!--        Table data-->
         <div class="row">
 
-<!--          Thymeleaf iteration of students-->
+<!--          Thymeleaf iteration of subjects-->
           <div th:each="entry : ${dashboardEntries}" >
             <div class="row" style="text-align: center">
 
-<!--              Student name-->
+<!--              Subject name-->
               <div class="col-md-4">
-                <p th:text="${entry.studentName}" style="color: #6A7677"></p>
+                <p th:text="${entry.subjectName}" style="color: #6A7677"></p>
               </div>
 
 <!--              Grade Rows logic-->
