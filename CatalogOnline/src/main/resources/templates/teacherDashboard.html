@@ -66,10 +66,12 @@
         <hr style="margin-top: 20px; margin-bottom: 20px">
       </div>
 
+<!--      Table start-->
       <div class="row">
 
         <div class="row" style="text-align: center">
 
+<!--          Table headers-->
           <div class="col-md-4">
             <h5 style="color: #6A7677">Student Name</h5>
           </div>
@@ -80,7 +82,7 @@
             <h5 style="color: #6A7677">Grade Date</h5>
           </div>
           <div class="col-md-2">
-            <h5 style="color: #6A7677">Absence</h5>
+            <h5 style="color: #6A7677">Absence(s)</h5>
           </div>
           <div class="col-md-2">
             <h5 style="color: #6A7677">Absence Date</h5>
@@ -92,158 +94,66 @@
           <hr style="width: 100%; margin: 20px 25px;">
         </div>
 
-        <div class="row" style="text-align: center">
+<!--        Table data-->
+        <div class="row">
 
-          <div class="col-md-4">
-            <p th:text="${grades_RaduAndreescu[0].studentName}" style="color: #6A7677"></p>
-          </div>
-          <div class="col-md-2">
+<!--          Thymeleaf iteration of students-->
+          <div th:each="entry : ${dashboardEntries}" >
             <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[0].grade}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[1].grade}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[2].grade}" style="color: #6A7677"></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[1].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduAndreescu[2].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_RaduAndreescu[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_RaduAndreescu[1].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
 
-        </div>
+<!--              Student name-->
+              <div class="col-md-4">
+                <p th:text="${entry.studentName}" style="color: #6A7677"></p>
+              </div>
 
-        <div class="col-md-12">
-          <hr style="width: 100%; margin: 20px 25px;">
-        </div>
+<!--              Grade Rows logic-->
+              <div  class="col-md-2">
+                <div th:each="grade : ${entry.grades}">
+                  <div class="row" style="text-align: center">
+                    <p th:text="${grade.key}" style="color: #6A7677"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div th:each="grade : ${entry.grades}">
+                <div class="row" style="text-align: center">
+                  <p th:text="${grade.value}" style="color: #6A7677"></p>
+                </div>
+              </div>
+            </div>
+              <!--              Grade Rows logic end-->
 
-        <div class="row" style="text-align: center">
+              <!--              Absences Rows logic-->
+              <div  class="col-md-2">
+                <div th:each="date : ${entry.absencesPairs}">
+                  <div class="row" style="text-align: center">
+                    <p th:text="${date.key}" style="color: #6A7677"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div th:each="date : ${entry.absencesPairs}">
+                  <div class="row" style="text-align: center">
+                    <p th:text="${date.value}" style="color: #6A7677"></p>
+                  </div>
+                </div>
+              </div>
+<!--              Absences Rows logic end-->
 
-          <div class="col-md-4">
-            <p th:text="${grades_AlinPascu[0].studentName}" style="color: #6A7677"></p>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[0].grade}" style="color: #6A7677"></p>
             </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[1].grade}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[2].grade}" style="color: #6A7677"></p>
+
+<!--          Border-->
+            <div class="col-md-12">
+              <hr style="width: 100%; margin: 20px 25px;">
             </div>
           </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[1].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_AlinPascu[2].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_AlinPascu[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_AlinPascu[1].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
+<!--          End of thymeleaf iteration-->
 
         </div>
-
-        <div class="col-md-12">
-          <hr style="width: 100%; margin: 20px 25px;">
-        </div>
-
-        <div class="row" style="text-align: center">
-
-          <div class="col-md-4">
-            <p th:text="${grades_RaduPop[0].studentName}" style="color: #6A7677"></p>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[0].grade}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[1].grade}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[2].grade}" style="color: #6A7677"></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[1].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${grades_RaduPop[2].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p style="color: #6A7677">1</p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_RaduPop[0].date}" style="color: #6A7677"></p>
-            </div>
-            <div class="row" style="text-align: center">
-              <p th:text="${absences_RaduPop[1].date}" style="color: #6A7677"></p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-md-12">
-          <hr style="width: 100%; margin: 20px 25px;">
-        </div>
+<!--        Table data end-->
 
       </div>
-
+<!--      Table end-->
 
     </div>
   </div>

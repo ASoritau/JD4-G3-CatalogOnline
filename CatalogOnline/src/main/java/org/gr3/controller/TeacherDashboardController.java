@@ -1,7 +1,14 @@
 package org.gr3.controller;
 
-import org.gr3.model.*;
-import org.gr3.service.*;
+import org.gr3.model.Absence;
+import org.gr3.model.Grade;
+import org.gr3.model.Student;
+import org.gr3.model.Teacher;
+import org.gr3.model.dashboard.TeacherDashboardEntry;
+import org.gr3.service.AbsenceService;
+import org.gr3.service.GradeService;
+import org.gr3.service.StudentService;
+import org.gr3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +39,7 @@ public class TeacherDashboardController {
     UserService userService;
 
     @RequestMapping(value = "/teacherDashboard")
-    public String myDashboardPage(@ModelAttribute("teacher") Teacher teacher, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
+    public String myDashboardPageV2(@ModelAttribute("teacher") Teacher teacher, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         model.addAttribute("teacher", teacher);
         teacher = (Teacher) model.getAttribute("teacher");
         List<Grade> grades = gradeService.getAllGrades();
@@ -40,51 +47,37 @@ public class TeacherDashboardController {
         redirectAttributes.addAttribute("grades", grades);
 
         String teacherSubject = teacher.getSubject();
-
-        Student student_RaduAndreescu = (Student) userService.findByFirstNameAndLastName("Radu", "Andreescu");
-        List<Grade> grades_RaduAndreescu = gradeService.getStudentGradesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
-
-        Student student_AlinPascu = (Student) userService.findByFirstNameAndLastName("Alin", "Pascu");
-        List<Grade> grades_AlinPascu = gradeService.getStudentGradesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
-
-        Student student_RaduPop = (Student) userService.findByFirstNameAndLastName("Radu", "Pop");
-        List<Grade> grades_RaduPop = gradeService.getStudentGradesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
-
-        model.addAttribute("grades_RaduAndreescu", grades_RaduAndreescu);
-        model.addAttribute("grades_AlinPascu", grades_AlinPascu);
-        model.addAttribute("grades_RaduPop", grades_RaduPop);
-
-        List<Absence> absences_RaduAndreescu = absenceService.getStudentAbsencesForSubject((int) student_RaduAndreescu.getUserId(), teacherSubject);
-        List<Absence> absences_AlinPascu = absenceService.getStudentAbsencesForSubject((int) student_AlinPascu.getUserId(), teacherSubject);
-        List<Absence> absences_RaduPop = absenceService.getStudentAbsencesForSubject((int) student_RaduPop.getUserId(), teacherSubject);
-
-        model.addAttribute("absences_RaduAndreescu", absences_RaduAndreescu);
-        model.addAttribute("absences_AlinPascu", absences_AlinPascu);
-        model.addAttribute("absences_RaduPop", absences_RaduPop);
+        List<Grade> subjectGrades = grades.stream().filter(k -> k.getSubject().equals(teacherSubject)).collect(Collectors.toList());
+        List<TeacherDashboardEntry> dashboardData = getRequiredStudentsData(subjectGrades, teacherSubject);
+        model.addAttribute("dashboardEntries", dashboardData);
 
         return "TeacherDashboard";
     }
 
-    private List<List<String>> getStudentsData() {
-        List<List<String>> dataToReturn = new ArrayList<>();
-
-        List<Student> students = studentService.getAllStuents();
-        List<Grade> grades = gradeService.getAllGrades();
+    private List<TeacherDashboardEntry> getRequiredStudentsData(List<Grade> subjectGrades, String teacherSubject) {
+        List<Student> students = studentService.getAllStudents();
         List<Absence> absences = absenceService.getAllAbsences();
 
-        for (Grade grade : grades) {
-            List<String> gradeData = new ArrayList<>();
+        List<Student> requiredStudents = new ArrayList<>();
 
-            Student student = students.stream().filter(k -> k.getUserId() == grade.getStudentId()).findFirst().get();
-            String studentName = student.getFirstName() + " " + student.getLastName();
+        for (Grade grade : subjectGrades) {
+            Student student = students.stream().filter(s -> s.getUserId() == grade.getStudentId()).findFirst().get();
 
-            gradeData.add(studentName);
-            gradeData.add(Integer.toString(grade.getGrade()));
-            gradeData.add(grade.getDate().toString());
-
-            dataToReturn.add(gradeData);
+            if (!requiredStudents.contains(student)) {
+                requiredStudents.add(student);
+            }
         }
 
-        return dataToReturn;
+        List<TeacherDashboardEntry> dashboardEntries = new ArrayList<>();
+
+        for (Student student : requiredStudents) {
+            List<Grade> studentGrades = subjectGrades.stream().filter(g -> g.getStudentId() == student.getUserId()).collect(Collectors.toList());
+            List<Absence> studentAbsences = absences.stream().filter(a -> a.getStudentId() == student.getUserId() && a.getSubjectName().equals(teacherSubject)).collect(Collectors.toList());
+
+            TeacherDashboardEntry dashboardEntry = new TeacherDashboardEntry(student, studentGrades, studentAbsences);
+            dashboardEntries.add(dashboardEntry);
+        }
+
+        return dashboardEntries;
     }
 }
