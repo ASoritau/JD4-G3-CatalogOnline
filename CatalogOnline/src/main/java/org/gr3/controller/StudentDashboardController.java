@@ -4,7 +4,6 @@ import org.gr3.model.Absence;
 import org.gr3.model.Grade;
 import org.gr3.model.Student;
 import org.gr3.model.dashboard.StudentDashboardEntry;
-import org.gr3.model.dashboard.TeacherDashboardEntry;
 import org.gr3.service.AbsenceService;
 import org.gr3.service.GradeService;
 import org.gr3.service.SubjectService;
@@ -34,7 +33,7 @@ public class StudentDashboardController {
     @Autowired
     private AbsenceService absenceService;
 
-    @RequestMapping(value = "/studentDashboard")
+    @RequestMapping(value = "/oldStudentDashboard")
     public String myDashboardPage(@ModelAttribute("student") Student student, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         model.addAttribute("student", student);
         student = (Student) model.getAttribute("student");
@@ -70,40 +69,39 @@ public class StudentDashboardController {
     public String myDashboardPageStudentV2(@ModelAttribute("") Student student, RedirectAttributes redirectAttributes, BindingResult errors, Model model) {
         model.addAttribute("student", student);
         int studentId = (int) student.getUserId();
-        List<Grade> grades = gradeService.getStudentGrades(studentId);
-        List<Absence> absences = absenceService.getStudentAbsences(studentId);
         redirectAttributes.addFlashAttribute("student", student);
-        redirectAttributes.addAttribute("student", grades);
 
-        List<Grade> subjectGrades = grades.stream().filter(k -> k.getSubject().equals(teacherSubject)).collect(Collectors.toList());
-        List<StudentDashboardEntry> dashboardData = getRequiredStudentsData(subjectGrades, teacherSubject);
+        List<StudentDashboardEntry> dashboardData = getRequiredStudentsData(studentId);
         model.addAttribute("dashboardEntries", dashboardData);
 
         return "StudentDashboard";
     }
 
-    private List<StudentDashboardEntry> getRequiredStudentsData(List<Grade> studentGrades, String teacherSubject) {
-        List<Student> students = studentService.getAllStuents();
-        List<Absence> absences = absenceService.getAllAbsences();
+    private List<StudentDashboardEntry> getRequiredStudentsData(int studentId) {
+        List<Grade> grades = gradeService.getStudentGrades(studentId);
+        List<Absence> absences = absenceService.getStudentAbsences(studentId);
 
-        List<Student> requiredStudents = new ArrayList<>();
+        List<String> subjectNames = new ArrayList<>();
 
-        for (Grade grade : studentGrades) {
-            Student student = students.stream().filter(s -> s.getUserId() == grade.getStudentId()).findFirst().get();
-
-            if (!requiredStudents.contains(student)) {
-                requiredStudents.add(student);
+        for (Grade grade : grades) {
+            if (!subjectNames.contains(grade.getSubject())) {
+                subjectNames.add(grade.getSubject());
             }
         }
 
-        List<TeacherDashboardEntry> dashboardEntries = new ArrayList<>();
+        for (Absence absence : absences) {
+            if (!subjectNames.contains(absence.getSubjectName())) {
+                subjectNames.add(absence.getSubjectName());
+            }
+        }
 
-        for (Student student : requiredStudents) {
-            List<Grade> studentGrades = studentGrades.stream().filter(g -> g.getStudentId() == student.getUserId()).collect(Collectors.toList());
-            List<Absence> studentAbsences = absences.stream().filter(a -> a.getStudentId() == student.getUserId() && a.getSubjectName().equals(teacherSubject)).collect(Collectors.toList());
+        List<StudentDashboardEntry> dashboardEntries = new ArrayList<>();
 
-            TeacherDashboardEntry dashboardEntry = new TeacherDashboardEntry(student, studentGrades, studentAbsences);
-            dashboardEntries.add(dashboardEntry);
+        for (String subjectName : subjectNames) {
+            List<Grade> subjectGrades = grades.stream().filter(g -> g.getStudentName().equals(subjectName)).collect(Collectors.toList());
+            List<Absence> subjectAbsences = absences.stream().filter(a -> a.getSubjectName().equals(subjectName)).collect(Collectors.toList());
+
+            dashboardEntries.add(new StudentDashboardEntry(subjectName, subjectGrades, subjectAbsences));
         }
 
         return dashboardEntries;

@@ -2,7 +2,6 @@ package org.gr3.model.dashboard;
 
 import org.gr3.model.Absence;
 import org.gr3.model.Grade;
-import org.gr3.model.Subject;
 import org.gr3.model.utils.Pair;
 
 import java.sql.Date;
@@ -10,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDashboardEntry {
-    public StudentDashboardEntry(Subject subject, List<Grade> grades, List<Absence> absences) {
-        subjectName = subject.getName();
+    public StudentDashboardEntry(String subjectName, List<Grade> grades, List<Absence> absences) {
+        this.subjectName = subjectName;
         this.grades = new ArrayList<>();
         this.absencesPairs = new ArrayList<>();
         List<Date> absenceDates = new ArrayList<>();
