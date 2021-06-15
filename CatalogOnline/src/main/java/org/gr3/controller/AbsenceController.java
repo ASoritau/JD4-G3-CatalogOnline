@@ -70,11 +70,9 @@ public class AbsenceController {
 
             //reset form
             model.addAttribute("absence", new Absence());
-            return "AddAbsencePage";
         }
-        else {
-            return "redirect:/teacherDashboard";
-        }
+
+        return "redirect:/teacherDashboard";
     }
 
     private void populateForm(Model model) {
