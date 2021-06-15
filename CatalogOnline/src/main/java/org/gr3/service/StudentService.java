@@ -14,7 +14,7 @@ public class StudentService {
     @Autowired
     UserService userService;
 
-    public List<Student> getAllStuents() {
+    public List<Student> getAllStudents() {
         List<User> users = userService.getAllUsers();
 
         List<Student> studentsList = new ArrayList<>();

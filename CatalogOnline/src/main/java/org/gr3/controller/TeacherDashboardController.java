@@ -55,7 +55,7 @@ public class TeacherDashboardController {
     }
 
     private List<TeacherDashboardEntry> getRequiredStudentsData(List<Grade> subjectGrades, String teacherSubject) {
-        List<Student> students = studentService.getAllStuents();
+        List<Student> students = studentService.getAllStudents();
         List<Absence> absences = absenceService.getAllAbsences();
 
         List<Student> requiredStudents = new ArrayList<>();

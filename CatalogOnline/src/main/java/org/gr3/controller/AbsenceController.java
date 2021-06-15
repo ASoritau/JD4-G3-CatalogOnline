@@ -80,7 +80,5 @@ public class AbsenceController {
                 .collect(Collectors.toMap(User::getUserId, k -> (k.getFirstName() + " " + k.getLastName()))));
         model.addAttribute("subjects", subjectService.getAllSubjects().stream()
                 .collect(Collectors.toMap(Subject::getName, k -> (k.getName()))));
-//        model.addAttribute("absences", absenceService.getAllAbsences().stream()
-//                .collect(Collectors.toMap(Absence::getId, k -> (k.getDate()))));
     }
 }
