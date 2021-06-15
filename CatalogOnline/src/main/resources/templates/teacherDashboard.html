@@ -82,7 +82,7 @@
             <h5 style="color: #6A7677">Grade Date</h5>
           </div>
           <div class="col-md-2">
-            <h5 style="color: #6A7677">Absence</h5>
+            <h5 style="color: #6A7677">Absence(s)</h5>
           </div>
           <div class="col-md-2">
             <h5 style="color: #6A7677">Absence Date</h5>
@@ -125,16 +125,16 @@
 
               <!--              Absences Rows logic-->
               <div  class="col-md-2">
-                <div th:each="grade : ${entry.absenceDates}">
+                <div th:each="date : ${entry.absencesPairs}">
                   <div class="row" style="text-align: center">
-                    <p th:text="1" style="color: #6A7677"></p>
+                    <p th:text="${date.key}" style="color: #6A7677"></p>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
-                <div th:each="date : ${entry.absenceDates}">
+                <div th:each="date : ${entry.absencesPairs}">
                   <div class="row" style="text-align: center">
-                    <p th:text="${date}" style="color: #6A7677"></p>
+                    <p th:text="${date.value}" style="color: #6A7677"></p>
                   </div>
                 </div>
               </div>

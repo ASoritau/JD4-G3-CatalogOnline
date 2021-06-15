@@ -48,13 +48,13 @@ public class TeacherDashboardController {
 
         String teacherSubject = teacher.getSubject();
         List<Grade> subjectGrades = grades.stream().filter(k -> k.getSubject().equals(teacherSubject)).collect(Collectors.toList());
-        List<TeacherDashboardEntry> dashboardData = getRequiredStudentsData(subjectGrades);
+        List<TeacherDashboardEntry> dashboardData = getRequiredStudentsData(subjectGrades, teacherSubject);
         model.addAttribute("dashboardEntries", dashboardData);
 
         return "TeacherDashboard";
     }
 
-    private List<TeacherDashboardEntry> getRequiredStudentsData(List<Grade> subjectGrades) {
+    private List<TeacherDashboardEntry> getRequiredStudentsData(List<Grade> subjectGrades, String teacherSubject) {
         List<Student> students = studentService.getAllStuents();
         List<Absence> absences = absenceService.getAllAbsences();
 
@@ -72,7 +72,7 @@ public class TeacherDashboardController {
 
         for (Student student : requiredStudents) {
             List<Grade> studentGrades = subjectGrades.stream().filter(g -> g.getStudentId() == student.getUserId()).collect(Collectors.toList());
-            List<Absence> studentAbsences = absences.stream().filter(a -> a.getStudentId() == student.getUserId()).collect(Collectors.toList());
+            List<Absence> studentAbsences = absences.stream().filter(a -> a.getStudentId() == student.getUserId() && a.getSubjectName().equals(teacherSubject)).collect(Collectors.toList());
 
             TeacherDashboardEntry dashboardEntry = new TeacherDashboardEntry(student, studentGrades, studentAbsences);
             dashboardEntries.add(dashboardEntry);

@@ -13,7 +13,8 @@ public class TeacherDashboardEntry {
     public TeacherDashboardEntry(Student student, List<Grade> grades, List<Absence> absences) {
         studentName = student.getFirstName() + " " + student.getLastName();
         this.grades = new ArrayList<>();
-        this.absenceDates = new ArrayList<>();
+        this.absencesPairs = new ArrayList<>();
+        List<Date> absenceDates = new ArrayList<>();
 
         for (Grade grade : grades) {
             this.grades.add(new Pair<>(grade.getGrade(), grade.getDate()));
@@ -22,13 +23,28 @@ public class TeacherDashboardEntry {
         for (Absence absence : absences) {
             absenceDates.add(absence.getDate());
         }
+
+        for (Date absenceDate : absenceDates) {
+            List<Date> datesAdded = new ArrayList<>();
+
+            for (Pair<Integer, Date> absencePair : absencesPairs) {
+                datesAdded.add((Date) absencePair.getValue());
+            }
+
+            if (!datesAdded.contains(absenceDate)) {
+                absencesPairs.add(new Pair<>(1, absenceDate));
+            } else {
+                Pair<Integer,Date> existingDate = absencesPairs.stream().filter(ad -> ad.getValue().equals(absenceDate)).findFirst().get();
+                existingDate.setKey((Integer) existingDate.getKey() + 1);
+            }
+        }
     };
 
     private String studentName;
 
     private List<Pair<Integer, Date>> grades;
 
-    private List<Date> absenceDates;
+    private List<Pair<Integer, Date>> absencesPairs;
 
     public String getStudentName() {
         return studentName;
@@ -46,11 +62,11 @@ public class TeacherDashboardEntry {
         this.grades = grades;
     }
 
-    public List<Date> getAbsenceDates() {
-        return absenceDates;
+    public List<Pair<Integer, Date>> getAbsencesPairs() {
+        return absencesPairs;
     }
 
-    public void setAbsenceDates(List<Date> absenceDates) {
-        this.absenceDates = absenceDates;
+    public void setAbsencesPairs(List<Pair<Integer, Date>> absencesPairs) {
+        this.absencesPairs = absencesPairs;
     }
 }
